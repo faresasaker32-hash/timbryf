@@ -1,0 +1,98 @@
+<html lang="it"><head><style>* { -webkit-text-size-adjust: 91% !important; }</style><style>
+@font-face {
+  font-family: "Optimistic";
+  font-style: normal;
+  font-weight: 400 600;
+  font-display: swap;
+  src: url("/fonts/OptimisticAI_VF_Optimized.woff2") format("woff2");
+}
+@font-face {
+  font-family: "Optimistic Mono";
+  font-style: normal;
+  font-weight: 400;
+  font-display: swap;
+  src: url("/fonts/OptimisticMono_W_TextRegular.woff2") format("woff2");
+}
+:where(html) {
+  font-family: "Optimistic", system-ui, sans-serif;
+}
+:where(code, pre, kbd, samp) {
+  font-family: "Optimistic Mono", ui-monospace, monospace;
+}
+</style><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Timbryf - Signup</title>
+<style>
+*{box-sizing:border-box}body{margin:0;background:#0A0A0A;color:#fff;font-family:-apple-system,system-ui,sans-serif}
+.wrap{max-width:480px;margin:0 auto;padding:16px}
+.top{display:flex;justify-content:space-between;align-items:center;font-size:13px;color:#aaa}
+.logo{font-weight:900;letter-spacing:2px;font-size:20px}.logo b{color:#D4AF5A}
+.live{color:#1DBA7A;font-weight:700}
+.hero{margin:14px 0 6px}.hero h1{font-size:28px;margin:0}.hero p{color:#aaa;font-size:14px}
+.card{background:#151515;border:1px solid #2b2b2b;border-radius:22px;padding:16px;margin-top:12px}
+.tabs{display:flex;background:#0f0f0f;border-radius:14px;padding:5px}.tabs button{flex:1;padding:12px;border:0;border-radius:11px;font-weight:800;cursor:pointer;background:transparent;color:#aaa}.tabs button.on{background:linear-gradient(180deg,#E8C97A,#B8963A);color:#000}
+.hint{text-align:center;color:#aaa;font-size:13px;margin:10px 0}
+label{font-size:13px;color:#E8D9B0;display:block;margin:14px 0 6px}input,select{width:100%;padding:14px 14px 14px 42px;border-radius:14px;border:1px solid #333;background:#0D0D0D;color:#fff;font-size:15px}
+.field{position:relative}.field i{position:absolute;left:13px;top:15px;font-style:normal;opacity:.7}
+.btn{width:100%;padding:15px;border:0;border-radius:14px;font-weight:900;font-size:16px;cursor:pointer;margin-top:18px}.green{background:linear-gradient(180deg,#2EE59A,#0FA968);color:#fff}.gold{background:linear-gradient(180deg,#E8C97A,#B8963A);color:#000}
+.msg{padding:12px;border-radius:12px;margin:10px 0;display:none;font-size:14px}.ok{background:#123322;color:#8ff0b8;display:block}.err{background:#3a1515;color:#ffb0b0;display:block}
+.grid{display:flex;gap:8px}.grid button{flex:1;padding:12px;border-radius:13px;border:1px solid #333;background:#111;color:#ccc;cursor:pointer}.grid button.on{background:#3A2E0A;color:#E8C97A;border-color:#D4AF5A;font-weight:800}
+.small{color:#aaa;font-size:12px;text-align:center;margin-top:10px}.link{color:#D4AF5A;cursor:pointer;text-decoration:underline}
+.success{background:#123322;border:1px solid #1DBA7A;border-radius:18px;padding:16px;display:none}
+.lang{display:flex;gap:6px;justify-content:center;margin:10px 0}.lang button{padding:7px 12px;border-radius:999px;border:1px solid #333;background:#111;color:#fff;cursor:pointer}.lang button.on{background:#D4AF5A;color:#000}
+.badge{display:inline-block;background:#1DBA7A;color:#fff;padding:6px 12px;border-radius:999px;font-size:12px}
+</style></head>
+<body><div class="wrap">
+<div class="top"><span class="logo">TIMBRYF<b>.it</b></span><span class="live">● LIVE</span></div>
+<div style="text-align:center;margin-top:8px"><span class="badge">14 giorni gratis • Senza carta</span></div>
+<div class="lang"><button onclick="setLang('it')" id="l-it" class="on">IT</button><button onclick="setLang('en')" id="l-en">EN</button><button onclick="setLang('fr')" id="l-fr">FR</button><button onclick="setLang('ar')" id="l-ar">AR</button></div>
+<div class="hero"><h1 id="h1">Crea il tuo account</h1><p id="sub">Inizia la prova gratuita — senza impegno.</p></div>
+<div class="card">
+<div class="tabs"><button id="tab-reg" class="on" onclick="show('reg')">Registrati</button><button id="tab-log" onclick="show('log')">Accedi</button></div>
+<p class="hint">Hai già un account? Usa Accedi.</p>
+<div id="msg" class="msg"></div>
+
+<div id="view-reg">
+<label>Nome titolare</label><div class="field"><i>👤</i><input id="r-name" placeholder="Fares" value="Fares"></div>
+<label>Nome negozio</label><div class="field"><i>🏪</i><input id="r-shop" placeholder="El.askarbarber" value="El.askarbarber"></div>
+<label>Email</label><div class="field"><i>✉️</i><input id="r-email" placeholder="barbiereel.askar@gmail.com" value="barbiereel.askar@gmail.com"></div>
+<label>Password</label><div class="field"><i>🔒</i><input id="r-pass" type="password" placeholder="Almeno 6 caratteri"></div>
+<label>Conferma Password</label><div class="field"><i>🔒</i><input id="r-pass2" type="password" placeholder="Ripeti la password"></div>
+<label>Professione</label><select id="r-prof" style="padding-left:14px"><option>Barbiere</option><option>Pizzeria</option><option>Ristorante</option><option>Caffè</option><option>Salone</option><option>Estetista</option><option>Autolavaggio</option><option>Palestra</option></select>
+<label>Tipo carta - Quanti timbri per il premio?</label><div class="grid"><button type="button" onclick="setT(5,this)">5 timbri</button><button type="button" onclick="setT(8,this)">8 timbri</button><button type="button" class="on" onclick="setT(10,this)">10 timbri</button></div><div class="grid" style="margin-top:8px"><button type="button" onclick="setT(15,this)">15 timbri</button><button type="button" onclick="setT(20,this)">20 timbri</button><button type="button" onclick="setT(30,this)">30 timbri</button></div><label style="margin-top:12px">Oppure scrivi tu il numero - più di 10</label><div class="field"><i>✏️</i><input id="r-custom" type="number" min="2" max="100" placeholder="Es: 12, 15, 25..." oninput="if(this.value){timbri=parseInt(this.value);document.querySelectorAll('.grid button').forEach(b=&gt;b.classList.remove('on'))}"></div><p style="color:#aaa;font-size:12px;margin:6px 0 0">Puoi scegliere 5, 8, 10, 15, 20, 30 - o scrivere أي رقم انت عاوزه، حتى لو أكتر من 10.</p>
+<button class="btn green" onclick="doSignup()">Crea Account Gratis</button>
+</div>
+
+<div id="view-log" style="display:none">
+<h2 style="margin:6px 0">Bentornato</h2><p style="color:#aaa;font-size:13px">Accedi per gestire la tua carta fedeltà.</p>
+<label>Email</label><div class="field"><i>✉️</i><input id="l-email" placeholder="faresasaker32@gmail.com"></div>
+<label>Password</label><div class="field"><i>🔒</i><input id="l-pass" type="password" placeholder="Password"></div>
+<button class="btn green" onclick="doLogin()">Accedi</button>
+<p class="small"><span class="link" onclick="show('forgot')">Hai dimenticato la password?</span></p>
+</div>
+
+<div id="view-forgot" style="display:none">
+<h2 style="margin:6px 0">Recupera password</h2><p style="color:#aaa;font-size:13px">Inserisci la tua email. Il reset avviene qui, in questa pagina.</p>
+<label>Email</label><div class="field"><i>✉️</i><input id="f-email" placeholder="Email"></div>
+<button class="btn gold" onclick="doForgot()">Invia link / Reset</button>
+<div id="forgot-reset" style="display:none"><label>Nuova Password</label><div class="field"><i>🔒</i><input id="f-new" type="password" placeholder="Nuova password"></div><button class="btn green" onclick="doReset()">Salva nuova password</button></div>
+<p class="small"><span class="link" onclick="show('log')">Torna ad Accedi</span></p>
+</div>
+
+<div id="view-ok" class="success"><h2>Account creato! ✅</h2><p id="ok-text"></p><button class="btn green" onclick="goDash()">Vai alla Dashboard →</button></div>
+</div>
+<p class="small">support@timbryf.it • WhatsApp Fares +393445519686<br>© 2026 Timbryf.it • 14 giorni gratis • Senza carta</p>
+</div>
+<script>
+var timbri=10, current=null;
+function setT(n,el){timbri=n;document.querySelectorAll('.grid button').forEach(b=>b.classList.remove('on'));el.classList.add('on');}
+function setLang(l){['it','en','fr','ar'].forEach(x=>document.getElementById('l-'+x).classList.toggle('on',x===l));document.body.dir=(l==='ar'?'rtl':'ltr'); if(l==='en'){document.getElementById('tab-reg').textContent='Sign up';document.getElementById('tab-log').textContent='Login';} if(l==='it'){document.getElementById('tab-reg').textContent='Registrati';document.getElementById('tab-log').textContent='Accedi';} if(l==='fr'){document.getElementById('tab-reg').textContent='Inscription';document.getElementById('tab-log').textContent='Connexion';} if(l==='ar'){document.getElementById('tab-reg').textContent='تسجيل';document.getElementById('tab-log').textContent='دخول';}}
+function getAll(){try{return JSON.parse(localStorage.getItem('timbryf_merchants')||'[]')}catch(e){return []}}
+function saveAll(a){try{localStorage.setItem('timbryf_merchants',JSON.stringify(a))}catch(e){}}
+function showMsg(t,ok){var m=document.getElementById('msg');m.textContent=t;m.className='msg '+(ok?'ok':'err');m.style.display='block'}
+function show(v){document.getElementById('msg').style.display='none';['reg','log','forgot','ok'].forEach(x=>{var el=document.getElementById('view-'+x); if(el) el.style.display=(x===v?'block':'none')});document.getElementById('tab-reg').classList.toggle('on',v==='reg');document.getElementById('tab-log').classList.toggle('on',v==='log');}
+function doSignup(){var name=document.getElementById('r-name').value.trim(),shop=document.getElementById('r-shop').value.trim(),email=document.getElementById('r-email').value.trim().toLowerCase(),p=document.getElementById('r-pass').value,p2=document.getElementById('r-pass2').value,prof=document.getElementById('r-prof').value; if(!name||!shop||!email||!p){showMsg('Compila tutti i campi.',false);return} if(p.length<6){showMsg('Password almeno 6 caratteri.',false);return} if(p!==p2){showMsg('Le password non coincidono.',false);return} var all=getAll(); if(all.find(x=>x.email===email)){showMsg('Account già esistente. Usa Accedi.',false);return} var m={name:name,shop:shop,email:email,pass:p,prof:prof,timbri:timbri,created:Date.now()}; all.push(m); saveAll(all); current=m; document.getElementById('ok-text').textContent='Benvenuto '+name+' — Negozio '+shop+' • '+prof+' • '+timbri+' timbri • 14 giorni gratis.'; show('ok'); showMsg('Account creato! Ora vai alla Dashboard.',true);}
+function doLogin(){var email=document.getElementById('l-email').value.trim().toLowerCase(),p=document.getElementById('l-pass').value; var all=getAll(); var m=all.find(x=>x.email===email); if(!m){showMsg('Account non trovato. Registrati prima.',false);return} if(m.pass!==p){showMsg('Password sbagliata. Prova di nuovo o usa Hai dimenticato la password?',false);return} current=m; document.getElementById('ok-text').textContent='Bentornato '+m.name+' — Negozio '+m.shop; show('ok'); showMsg('Bentornato!',true);}
+function doForgot(){var email=document.getElementById('f-email').value.trim().toLowerCase(); var all=getAll(); var m=all.find(x=>x.email===email); if(!m){showMsg('Email non trovata. Controlla l\'email o registrati.',false);return} current=m; document.getElementById('forgot-reset').style.display='block'; showMsg('Email trovata! Inserisci la nuova password.',true);}
+function doReset(){var np=document.getElementById('f-new').value; if(!np){showMsg('Inserisci la nuova password.',false);return} var all=getAll(); var idx=all.findIndex(x=>x.email===current.email); all[idx].pass=np; saveAll(all); showMsg('Password aggiornata! Ora puoi accedere.',true); show('log');}
+function goDash(){if(!current){current=getAll()[0]} if(!current){show('reg');return} var q='dashboard.html?shop='+encodeURIComponent(current.shop)+'&name='+encodeURIComponent(current.name)+'&email='+encodeURIComponent(current.email)+'&prof='+encodeURIComponent(current.prof)+'&timbri='+current.timbri; window.location.href=q;}
+</script><script>(function(){var loc=location.href.replace(/#.*$/,"");var ATTR_NAMES=["data-product-id","data-productid","data-product_id","product-id","productid","product_id","data-source-entity-id","source-entity-id","source_entity_id","data-product","data-metadata","data-meta"];var DATASET_KEYS=["productId","productid","product_id","sourceEntityId","sourceentityid","source_entity_id","product","metadata","meta"];function readProductId(value){if(typeof value!=="string"||value.length===0)return null;if(/^[0-9]{6,}$/.test(value))return value;var match=value.match(/(?:product(?:_|-)?id|source(?:_|-)?entity(?:_|-)?id)["'=:\s]+([0-9]{6,})/i);return match?match[1]:null}function extractProductId(start){for(var node=start;node&&node!==document.body;node=node.parentElement){for(var i=0;i<ATTR_NAMES.length;i++){var attrValue=node.getAttribute&&node.getAttribute(ATTR_NAMES[i]);var attrProductId=readProductId(attrValue);if(attrProductId)return attrProductId}var dataset=node.dataset||null;if(dataset){for(var j=0;j<DATASET_KEYS.length;j++){var dataValue=dataset[DATASET_KEYS[j]];var dataProductId=readProductId(dataValue);if(dataProductId)return dataProductId}}}return null}function isInlineMediaSlotElement(node){return !!(node&&node.getAttribute&&node.getAttribute("data-clippy-inline-media-slot")!==null)}function findInlineMediaSlot(start){for(var node=start;node&&node!==document.body;node=node.parentElement){if(isInlineMediaSlotElement(node))return node}return null}function readInlineMediaUrl(node){if(!node)return null;return node.getAttribute&&((node.getAttribute("data-clippy-inline-media-url")||node.getAttribute("data-url")||node.getAttribute("data_url")))||node.href||null}function stripHash(url){return String(url).replace(/#.*$/,"")}function urlsMatch(a,b){if(!a||!b)return false;try{return stripHash(new URL(a,loc).href)===stripHash(new URL(b,loc).href)}catch(_){return stripHash(a)===stripHash(b)}}function isFirstPartyReelUrl(value){try{var url=new URL(value,loc);if(url.protocol!=="https:")return false;var host=url.hostname.toLowerCase();var supported=host==="instagram.com"||host.endsWith(".instagram.com")||host==="facebook.com"||host.endsWith(".facebook.com");return supported&&/\/reels?\//i.test(url.pathname)}catch(_){return false}}function isInlineMediaUrlClick(node,href){var slot=findInlineMediaSlot(node);if(!slot)return false;var slotUrl=readInlineMediaUrl(slot);if(slotUrl)return urlsMatch(href,slotUrl);return isFirstPartyReelUrl(href)}function findDataHref(start){for(var node=start;node&&node!==document.body;node=node.parentElement){if(node.getAttribute){var href=node.getAttribute("data-href")||node.getAttribute("data-url");if(href)return{href:href,node:node}}}return null}var nativeOpen=window.open;window.open=function(url){if(parent!==window&&typeof url==="string"&&/^https?:\/\//.test(url)){parent.postMessage({type:"ecto:usercontent-link-click",href:url},"*");return null}return nativeOpen?nativeOpen.apply(window,arguments):null};document.addEventListener("click",function(e){var target=e.target instanceof Element?e.target:null;if(!target)return;if(parent===window)return;var a=target.closest?target.closest("a[href]"):null;if(a&&a.href&&/^https?:\/\//.test(a.href)&&a.href.replace(/#.*$/,"")!==loc){if(isInlineMediaUrlClick(a,a.href))return;var productId=extractProductId(target)||extractProductId(a);if(productId){e.preventDefault();parent.postMessage({type:"ecto-artifact-link-click",productId:productId},"*");return}e.preventDefault();parent.postMessage({type:"ecto:usercontent-link-click",href:a.href},"*");return}var dataHref=findDataHref(target);if(dataHref&&/^https?:\/\//.test(dataHref.href)&&dataHref.href.replace(/#.*$/,"")!==loc){if(isInlineMediaUrlClick(dataHref.node,dataHref.href))return;e.preventDefault();parent.postMessage({type:"ecto:usercontent-link-click",href:dataHref.href},"*")}},true)})();</script><script>(function(){var FOCUS_TYPE="ecto:artifact-focus-request";var CLOSE_TYPE="ecto:artifact-close-request";function focusArtifactDocument(){var body=document.body;if(!body)return;try{window.focus();}catch(e){}if(!body.hasAttribute("tabindex"))body.setAttribute("tabindex","-1");try{body.focus({preventScroll:true});}catch(e){try{body.focus();}catch(e2){}}}window.addEventListener("message",function(event){if(event.source!==window.parent)return;var data=event.data;if(!data||typeof data!=="object"||data.type!==FOCUS_TYPE)return;if(document.readyState==="loading"){document.addEventListener("DOMContentLoaded",focusArtifactDocument,{once:true});return;}focusArtifactDocument();});window.addEventListener("keydown",function(event){if(event.key!=="Escape")return;window.setTimeout(function(){if(event.defaultPrevented)return;window.parent.postMessage({type:CLOSE_TYPE},"*");},0);});})();</script></body></html>
