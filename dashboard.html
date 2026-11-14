@@ -2,40 +2,44 @@
 <html lang="it"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
 <title>Timbryf - Dashboard</title>
 <style>
-*{box-sizing:border-box} body{margin:0;font-family:-【entity-apple¦canonical_name=Apple】-system,system-ui,sans-serif;background:#F2F4F7;color:#111827}
-a{color:inherit;text-decoration:none} button{cursor:pointer}
+*{box-sizing:border-box} body{margin:0;font-family:-apple-system,system-ui,sans-serif;background:#F2F4F7;color:#111827}
+button{cursor:pointer}
 .layout{display:flex;min-height:100vh}
-.side{width:260px;background:#fff;border-right:1px solid #E5E7EB;padding:16px;position:sticky;top:0;height:100vh;overflow:auto;flex-shrink:0}
-.logo{font-weight:900;font-size:22px;letter-spacing:.5px}.logo b{color:#0F766E}
+.side{width:270px;background:#fff;border-right:1px solid #E5E7EB;padding:16px;position:sticky;top:0;height:100vh;overflow:auto;flex-shrink:0}
+.brand{background:#0A0A0A;border-radius:16px;padding:14px;display:flex;gap:10px;align-items:center;margin-bottom:14px}
+.brand .t{width:44px;height:44px;background:#D4AF5A;border-radius:50%;display:flex;align-items:center;justify-content:center;font-weight:900;font-size:22px;color:#000;flex-shrink:0}
 .mitem{display:flex;gap:10px;align-items:center;padding:11px 12px;border-radius:12px;color:#4B5563;margin:3px 0;cursor:pointer;border:0;background:transparent;width:100%;text-align:left;font-size:15px}
-.mitem.on{background:#E6EEF5;color:#111827;font-weight:700}.mitem.green{background:#E6F7EE;color:#0B7A43;font-weight:700}
-.help{background:#16A34A;color:#fff;border:0;padding:13px;border-radius:12px;width:100%;font-weight:800;margin:12px 0}
-.lang{display:flex;border:1px solid #D1D5DB;border-radius:999px;overflow:hidden;width:150px}.lang button{flex:1;border:0;padding:8px;background:#fff}.lang button.on{background:#16A34A;color:#fff}
+.mitem.on{background:#F5E9C8;color:#111827;font-weight:700}.mitem.green{background:#F5E9C8;color:#111827;font-weight:700}
+.help{background:#D4AF5A;color:#000;border:0;padding:13px;border-radius:12px;width:100%;font-weight:800;margin:12px 0}
+.lang{display:flex;border:1px solid #D1D5DB;border-radius:999px;overflow:hidden;width:150px}.lang button{flex:1;border:0;padding:8px;background:#fff}.lang button.on{background:#D4AF5A;color:#000}
 .shop{display:flex;gap:10px;align-items:center;margin-top:16px;padding-top:14px;border-top:1px solid #E5E7EB}
-.avatar{width:44px;height:44px;border-radius:50%;background:#E6F7EE;display:flex;align-items:center;justify-content:center;font-weight:900}
+.avatar{width:44px;height:44px;border-radius:50%;background:#F5E9C8;display:flex;align-items:center;justify-content:center;font-weight:900}
 .main{flex:1;padding:22px;max-width:980px;margin:0 auto;width:100%}
 .card{background:#fff;border:1px solid #E2E8F0;border-radius:18px;padding:18px;margin:14px 0}
 .grid3{display:grid;grid-template-columns:1fr 1fr 1fr;gap:12px}
 .stat{background:#fff;border:1px solid #E2E8F0;border-radius:16px;padding:16px}.stat small{color:#64748B}.stat b{font-size:28px}
 input,select{width:100%;padding:12px;border-radius:12px;border:1px solid #D1D5DB;background:#F8FAFC;margin-top:6px;font-size:15px}
 .btn{padding:12px 16px;border-radius:12px;border:1px solid #D1D5DB;background:#F8FAFC;font-weight:700}
-.btn-dark{background:#111827;color:#fff;border:0}.btn-green{background:#16A34A;color:#fff;border:0}.btn-gold{background:#D4AF5A;color:#000;border:0}
+.btn-dark{background:#0A0A0A;color:#fff;border:0}.btn-gold{background:#D4AF5A;color:#000;border:0}.btn-green{background:#D4AF5A;color:#000;border:0}
 .pill{border:1px solid #CBD5E1;padding:9px 14px;border-radius:999px;background:#fff}.pill.on{border:2px solid #111827;font-weight:800}
-.dot{width:34px;height:34px;border-radius:50%;border:2px solid #E2E8F0;display:inline-block;cursor:pointer}.dot.on{outline:3px solid #111827}
-.switch{width:52px;height:30px;background:#CBD5E1;border-radius:999px;position:relative;cursor:pointer;flex-shrink:0}.switch:after{content:'';position:absolute;top:3px;left:3px;width:24px;height:24px;background:#fff;border-radius:50%;transition:.2s}.switch.on{background:#111827}.switch.on:after{left:25px}
+.dot{width:34px;height:34px;border-radius:50%;border:2px solid #E2E8F0;display:inline-block;cursor:pointer}.dot.on{outline:3px solid #D4AF5A}
+.switch{width:52px;height:30px;background:#CBD5E1;border-radius:999px;position:relative;cursor:pointer;flex-shrink:0}.switch:after{content:'';position:absolute;top:3px;left:3px;width:24px;height:24px;background:#fff;border-radius:50%;transition:.2s}.switch.on{background:#0A0A0A}.switch.on:after{left:25px}
 .row{display:flex;justify-content:space-between;gap:12px;align-items:center;padding:14px 0;border-bottom:1px solid #F1F5F9}
 .phone{max-width:360px;margin:0 auto;background:#E6EEF5;border:10px solid #1F2937;border-radius:42px;padding:20px;min-height:560px;text-align:center}
 .phone .pbtn{background:#fff;border-radius:999px;padding:14px;margin:8px 0;display:flex;gap:10px;align-items:center;justify-content:center;box-shadow:0 4px 14px rgba(0,0,0,.08)}
-.bars{display:flex;align-items:flex-end;gap:6px;height:90px;margin:12px 0}.bars div{flex:1;background:#334155;border-radius:4px 4px 0 0;min-height:4px}
+.bars{display:flex;align-items:flex-end;gap:6px;height:90px;margin:12px 0}.bars div{flex:1;background:#0A0A0A;border-radius:4px 4px 0 0;min-height:4px}
 .small{color:#64748B;font-size:13px;line-height:1.5}
+.loyalty-card{background:#0A0A0A;color:#fff;border-radius:22px;padding:20px;margin:14px 0}
+.loyalty-card .stamp{width:42px;height:42px;border-radius:50%;border:2px dashed #D4AF5A;display:flex;align-items:center;justify-content:center;font-size:18px}
+.loyalty-card .stamp.done{background:#D4AF5A;color:#000;border-style:solid}
 @media(max-width:820px){.side{position:fixed;left:-280px;top:0;z-index:99;transition:.25s;box-shadow:0 0 40px rgba(0,0,0,.25)}.side.open{left:0}.grid3{grid-template-columns:1fr}.main{padding:12px}.mobtop{display:flex!important}}
 .hidden{display:none}
 </style></head>
 <body>
-<div class="mobtop" style="display:none;position:sticky;top:0;z-index:50;background:#fff;border-bottom:1px solid #E5E7EB;padding:10px 12px;align-items:center;gap:10px"><button onclick="document.querySelector('.side').classList.toggle('open')" style="font-size:22px;border:1px solid #D1D5DB;background:#fff;border-radius:10px;padding:6px 12px">☰</button><b style="font-size:19px">Timbryf.</b><span style="margin-left:auto;font-size:13px;color:#64748B">New Shop - Trial 14 days</span></div>
+<div class="mobtop" style="display:none;position:sticky;top:0;z-index:50;background:#0A0A0A;padding:10px 12px;align-items:center;gap:10px"><button onclick="document.querySelector('.side').classList.toggle('open')" style="font-size:22px;border:1px solid #D4AF5A;background:#fff;border-radius:10px;padding:6px 12px">☰</button><b style="font-size:19px;color:#fff">TIMBRYF<span style="color:#D4AF5A">.it</span></b><span style="margin-left:auto;font-size:13px;color:#D4AF5A">New Shop - Trial 14 days</span></div>
 <div class="layout">
 <aside class="side">
-<div class="logo">Timbryf<span style="color:#16A34A">.</span></div>
+<div class="brand"><div class="t">T</div><div><b style="color:#fff;font-size:19px">TIMBRYF<span style="color:#D4AF5A">.it</span></b><div style="color:#D4AF5A;font-size:11px;letter-spacing:1px">LIVE - CARTA FEDELTA DIGITALE</div></div></div>
 <button class="mitem on" data-tab="overview">Overview</button>
 <button class="mitem" data-tab="cards">Cards</button>
 <button class="mitem" data-tab="customers">Customers</button>
@@ -51,52 +55,55 @@ input,select{width:100%;padding:12px;border-radius:12px;border:1px solid #D1D5DB
 <button class="help" onclick="location.href='https://wa.me/393445519686'">Need help? WhatsApp Us</button>
 <button class="mitem" data-tab="new">What's new</button>
 <div class="lang"><button class="on">English</button><button>عربي</button></div>
-<div class="shop"><div class="avatar" id="shopAvatar">N</div><div><b id="sideShop">New Shop</b><div class="small" id="sidePlan">Starter Plan · 1 branch</div></div></div>
+<div class="shop"><div class="avatar" id="shopAvatar">N</div><div><b id="sideShop">New Shop</b><div class="small" id="sidePlan">Starter Plan - 1 branch</div></div></div>
 </aside>
 <main class="main">
 <section id="tab-overview">
 <h1 style="font-size:32px;margin:4px 0">Overview</h1><p class="small">Welcome back. This is your shop dashboard - empty for a new shop. When your customers come, it fills by itself.</p>
-<div class="card"><b>Trial</b><p class="small">Your free trial ends in 14 days. No card required for the trial.</p><button class="btn btn-dark" onclick="location.href='pay.html'">Upgrade - See plans</button></div>
+<div class="card" style="border-left:6px solid #D4AF5A"><b>Trial - 14 GIORNI GRATIS - SENZA CARTA</b><p class="small">Your free trial ends in 14 days. No card required for the trial.</p><button class="btn btn-gold" onclick="location.href='pay.html'">Upgrade - See plans</button></div>
 <div class="grid3"><div class="stat"><small>Stamps given</small><br><b id="sStamps">0</b></div><div class="stat"><small>Customers</small><br><b id="sCust">0</b></div><div class="stat"><small>Rewards</small><br><b id="sRew">0</b></div></div>
+<div class="card"><b>Your Loyalty Card - Live</b><div class="loyalty-card"><div style="display:flex;justify-content:space-between"><b id="cardShopNameTop">New Shop</b><span style="color:#D4AF5A">TIMBRYF.it</span></div><p style="color:#D1D5DB">Collect <span id="cardGoalTop">6</span> stamps - Get <span id="cardRewardTop">Free haircut</span></p><div id="cardVisualTop" style="display:flex;gap:8px;flex-wrap:wrap;margin:14px 0"></div><div style="background:#374151;height:10px;border-radius:999px;overflow:hidden"><div id="cardProgressTop" style="background:#D4AF5A;height:10px;width:0%"></div></div><p style="font-size:13px;color:#D1D5DB" id="cardProgressTextTop">0 / 6 stamps</p></div></div>
 <div class="card"><b>Live preview - what the customer sees</b><p class="small">This preview updates when you change Name, Background, Buttons and Links in Settings / Link in bio.</p>
-<div class="phone" id="previewPhone" style="background:#E6EEF5"><div style="text-align:right">Share</div><div style="width:92px;height:92px;border-radius:50%;background:#D1D5DB;margin:18px auto;display:flex;align-items:center;justify-content:center;font-weight:900;font-size:28px" id="prevLogo">N</div><h2 id="prevName" style="margin:6px 0">New Shop</h2><p class="small" id="prevTag">Your tagline here</p><div id="prevLinks"></div><p class="small" id="prevFooter">Loyalty cards for 【entity-Apple¦canonical_name=Apple】 &amp; Google Wallet</p></div></div>
+<div class="phone" id="previewPhone" style="background:#E6EEF5"><div style="text-align:right">Share</div><div style="width:92px;height:92px;border-radius:50%;background:#D4AF5A;margin:18px auto;display:flex;align-items:center;justify-content:center;font-weight:900;font-size:28px;color:#000" id="prevLogo">N</div><h2 id="prevName" style="margin:6px 0">New Shop</h2><p class="small" id="prevTag">Your tagline here</p><div id="prevLinks"></div><p class="small">Loyalty cards for iOS & Google Wallet</p></div></div>
 </section>
 <section id="tab-cards" class="hidden">
 <h1>Cards</h1><p class="small">Your loyalty card. Choose how many stamps for the reward - 5, 8, 10, 15, 20, 30 or any number.</p>
-<div class="card"><b>Loyalty Card</b><p>Collect <span id="cardGoalLabel">6</span> stamps -&gt; <span id="cardRewardLabel">Free haircut</span></p><div id="cardDots" style="font-size:26px;letter-spacing:4px"></div><label>Stamps for reward</label><select id="goalSel"><option>5</option><option selected>6</option><option>8</option><option>10</option><option>15</option><option>20</option><option>30</option></select><label>Or write any number</label><input id="goalCustom" type="number" min="2" max="100" placeholder="Example: 12, 25..."><label>Reward name</label><input id="rewardName" value="Free haircut"><button class="btn btn-dark" onclick="saveCard()">Save card</button><p class="small" id="cardMsg"></p></div>
+<div class="card"><b>Your Loyalty Card</b>
+<div class="loyalty-card"><div style="display:flex;justify-content:space-between"><b id="cardShopName">New Shop</b><span style="color:#D4AF5A">TIMBRYF.it</span></div><p style="color:#D1D5DB">Collect <span id="cardGoalLabel">6</span> stamps - Get <span id="cardRewardLabel">Free haircut</span></p><div id="cardVisual" style="display:flex;gap:8px;flex-wrap:wrap;margin:14px 0"></div><div style="background:#374151;height:10px;border-radius:999px;overflow:hidden"><div id="cardProgress" style="background:#D4AF5A;height:10px;width:0%"></div></div><p style="font-size:13px;color:#D1D5DB" id="cardProgressText">0 / 6 stamps - 6 left for reward</p><p style="font-size:13px;color:#D4AF5A">1 stamp per day - After payment - QR in drawer</p></div>
+<label>Stamps for reward</label><select id="goalSel"><option>5</option><option selected>6</option><option>8</option><option>10</option><option>15</option><option>20</option><option>30</option></select><label>Or write any number</label><input id="goalCustom" type="number" min="2" max="100" placeholder="Example: 12, 25..."><label>Reward name</label><input id="rewardName" value="Free haircut"><button class="btn btn-gold" onclick="saveCard()">Save card</button><p class="small" id="cardMsg"></p></div>
 <div class="card"><b>Staff Stamp - 1 stamp per day</b><p class="small">Show the QR only after the customer has paid. 1 scan = 1 stamp per day. If the customer already got a stamp today: Thank you, you honoured us today. We wait for you next time.</p><div style="background:#fff;border:1px dashed #CBD5E1;padding:14px;text-align:center;border-radius:14px"><b id="qrShop2">New Shop</b><br><img src="https://api.qrserver.com/v1/create-qr-code/?size=150x150&data=https://timbryf.vercel.app/scan" style="width:150px"><br><span class="small">timbryf.vercel.app/scan</span></div><button class="btn" onclick="window.print()">Print QR - Keep it in the drawer</button></div>
 </section>
 <section id="tab-customers" class="hidden">
 <h1>Customers</h1><p class="small">Empty for a new shop. Add your first customer and give stamps.</p>
-<div class="card"><input id="cname" placeholder="Customer name"><button class="btn btn-dark" onclick="addCust()">+ Add customer</button><div id="custList"></div></div>
+<div class="card"><input id="cname" placeholder="Customer name"><button class="btn btn-gold" onclick="addCust()">+ Add customer</button><div id="custList"></div></div>
 </section>
 <section id="tab-staffstamp" class="hidden">
 <h1>Staff Stamp</h1><p class="small">Staff gives the stamp here, after payment. 1 per day per customer.</p>
-<div class="card"><b>Give a stamp</b><input id="stampName" placeholder="Customer name"><button class="btn btn-green" onclick="staffStamp()">+ Give 1 Stamp</button><p class="small" id="stampMsg"></p><div id="stampList"></div></div>
+<div class="card"><b>Give a stamp</b><input id="stampName" placeholder="Customer name"><button class="btn btn-gold" onclick="staffStamp()">+ Give 1 Stamp</button><p class="small" id="stampMsg"></p><div id="stampList"></div></div>
 </section>
 <section id="tab-analytics" class="hidden">
 <h1>Analytics</h1><p class="small">Last 30 days - starts at 0 for a new shop.</p>
 <div class="grid3"><div class="stat"><small>Views</small><br><b id="aViews">0</b></div><div class="stat"><small>Clicks</small><br><b id="aClicks">0</b></div><div class="stat"><small>Click rate</small><br><b>0%</b></div></div>
 <div class="card"><b>Chart</b><div class="bars" id="chartBars"></div><div style="display:flex;justify-content:space-between" class="small"><span>10-15</span><span>10-20</span><span>10-25</span><span>10-30</span><span>11-04</span><span>11-09</span></div><p class="small">Top links</p><div id="topLinks"></div><p class="small">Traffic sources</p><div id="traffic"></div></div>
 </section>
-<section id="tab-campaigns" class="hidden"><h1>Campaigns</h1><div class="card"><p class="small">Send an offer to your customers. Starts empty.</p><input placeholder="Campaign title - Example: 20% this week"><button class="btn btn-dark">Create campaign</button></div></section>
+<section id="tab-campaigns" class="hidden"><h1>Campaigns</h1><div class="card"><p class="small">Send an offer to your customers. Starts empty.</p><input placeholder="Campaign title - Example: 20% this week"><button class="btn btn-gold">Create campaign</button></div></section>
 <section id="tab-branches" class="hidden"><h1>Branches</h1><div class="card"><p class="small">1 branch on Starter Plan. Add more on higher plans.</p><div class="row"><span>Main branch</span><b>Active</b></div><button class="btn">+ Add branch</button></div></section>
-<section id="tab-staff" class="hidden"><h1>Staff</h1><div class="card"><p class="small">Staff can give stamps. Add staff members here.</p><input placeholder="Staff name"><button class="btn btn-dark">+ Add staff</button></div></section>
-<section id="tab-ai" class="hidden"><h1>AI Agent</h1><div class="card"><p class="small">Your AI assistant answers customers and helps you with settings.</p><input placeholder="Ask the AI..."><button class="btn btn-dark">Ask</button></div></section>
-<section id="tab-billing" class="hidden"><h1>Billing</h1><div class="card"><b>Starter Plan - Trial 14 days</b><p class="small">No card for the trial. Pay only if you want to continue.</p><button class="btn btn-dark" onclick="location.href='pay.html'">See plans - Basic 29.99 - Pro 49.99 - Premium 79.99</button></div></section>
-<section id="tab-new" class="hidden"><h1>What's new</h1><div class="card"><p>- 1 stamp per day - anti-theft<br>- Polite message: Thank you, you honoured us today<br>- Settings inside dashboard<br>- Link in bio + Loyalty Card + Insights</p></div></section>
+<section id="tab-staff" class="hidden"><h1>Staff</h1><div class="card"><p class="small">Staff can give stamps. Add staff members here.</p><input placeholder="Staff name"><button class="btn btn-gold">+ Add staff</button></div></section>
+<section id="tab-ai" class="hidden"><h1>AI Agent</h1><div class="card"><p class="small">Your AI assistant answers customers and helps you with settings.</p><input placeholder="Ask the AI..."><button class="btn btn-gold">Ask</button></div></section>
+<section id="tab-billing" class="hidden"><h1>Billing</h1><div class="card"><b>Starter Plan - Trial 14 days</b><p class="small">No card for the trial. Pay only if you want to continue.</p><button class="btn btn-gold" onclick="location.href='pay.html'">See plans - Basic 29.99 - Pro 49.99 - Premium 79.99</button></div></section>
+<section id="tab-new" class="hidden"><h1>What's new</h1><div class="card"><p>- 1 stamp per day - anti-theft<br>- Polite message: Thank you, you honoured us today<br>- Settings inside dashboard<br>- Link in bio + Loyalty Card + Insights<br>- New: Black + Gold Timbryf branding</p></div></section>
 <section id="tab-linkbio" class="hidden">
 <h1>Link in bio</h1><p class="small">Your public page - what customers see when they open your link.</p>
-<div class="card"><b>Profile</b><label>Name</label><input id="lbName" value="New Shop"><label>Tagline</label><input id="lbTag" placeholder="e.g. STEALING YOUR MORNINGS"><label>Background</label><div style="display:flex;gap:8px;margin:8px 0" id="bgDots"></div><input id="bgHex" value="#E6EEF5"><button class="btn btn-dark" onclick="saveBio()">Save profile</button></div>
+<div class="card"><b>Profile</b><label>Name</label><input id="lbName" value="New Shop"><label>Tagline</label><input id="lbTag" placeholder="e.g. Piu clienti che tornano"><label>Background</label><div style="display:flex;gap:8px;margin:8px 0;flex-wrap:wrap" id="bgDots"></div><input id="bgHex" value="#E6EEF5"><button class="btn btn-gold" onclick="saveBio()">Save profile</button></div>
 <div class="card"><b>Design</b><p><b>Wallpaper</b></p><button class="pill on" onclick="setWall('Fill',this)">Fill</button> <button class="pill" onclick="setWall('Gradient',this)">Gradient</button> <button class="pill" onclick="setWall('Image',this)">Image</button><p><b>Buttons</b></p><button class="pill on" onclick="setBtnStyle('Solid',this)">Solid</button> <button class="pill" onclick="setBtnStyle('Glass',this)">Glass</button> <button class="pill" onclick="setBtnStyle('Outline',this)">Outline</button><p><b>Corner roundness</b></p><button class="pill" onclick="setRound('0px',this)">Square</button> <button class="pill" onclick="setRound('12px',this)">Soft</button> <button class="pill on" onclick="setRound('999px',this)">Round</button><p><b>Button shadow</b></p><button class="pill" onclick="setShadow('None',this)">None</button> <button class="pill on" onclick="setShadow('Soft',this)">Soft</button> <button class="pill" onclick="setShadow('Strong',this)">Strong</button> <button class="pill" onclick="setShadow('Hard',this)">Hard</button><label>Button color</label><input id="btnColor" value="#FFFFFF"><label>Button text color</label><input id="btnText" value="#1A1A1A"></div>
 <div class="card"><b>Text</b><label>Font</label><select id="fontSel"><option>DM Sans</option><option>Inter</option><option>System</option></select><label>Title color</label><input id="titleColor" value="#1A1A1A"></div>
-<div class="card"><b>Header &amp; footer</b><div class="row"><span>Show logo wide<br><span class="small">For landscape logos - shows it full instead of in a circle.</span></span><div class="switch" onclick="this.classList.toggle('on')"></div></div><div class="row"><span>Hide Timbryf footer<br><span class="small">Available on paid plans.</span></span><div class="switch" onclick="this.classList.toggle('on')"></div></div></div>
-<div class="card"><b>Menu (PDF)</b><button class="btn">Upload PDF menu</button><p class="small">Up to 10 MB. Shows as the "MENU" button at the top.</p></div>
+<div class="card"><b>Header & footer</b><div class="row"><span>Show logo wide<br><span class="small">For landscape logos - shows it full instead of in a circle.</span></span><div class="switch" onclick="this.classList.toggle('on')"></div></div><div class="row"><span>Hide Timbryf footer<br><span class="small">Available on paid plans.</span></span><div class="switch" onclick="this.classList.toggle('on')"></div></div></div>
+<div class="card"><b>Menu (PDF)</b><button class="btn">Upload PDF menu</button><p class="small">Up to 10 MB. Shows as the MENU button at the top.</p></div>
 <div class="card"><b>Links</b><button class="btn" onclick="addLink()">+ Add link</button><div id="linksList"></div></div>
 </section>
 <section id="tab-settings" class="hidden">
 <h1>Settings</h1><p class="small">Manage your business profile and preferences.</p>
-<div class="card"><b>Business Profile</b><label>Logo *</label><div style="display:flex;gap:12px;align-items:center"><div class="avatar" style="width:72px;height:72px;font-size:24px" id="setLogo">N</div><button class="btn">Replace logo</button></div><p class="small">PNG or JPG, max 2MB</p><label>Business Name</label><input id="setShop" value="New Shop"><label>Contact Email</label><input id="setEmail" placeholder="you@shop.com"><label>Phone</label><div style="display:flex;gap:8px"><select style="width:130px"><option>Italy +39</option><option>Egypt +20</option><option>UAE +971</option></select><input id="setPhone" placeholder="344 551 9686"></div><label>Address</label><input id="setAddr" placeholder="Via Aurelia 331, Roma"><label>Currency</label><select id="setCurr"><option>EUR - Euro</option><option>EGP - Egyptian Pound</option><option>USD - Dollar</option></select><p class="small">Used when staff record a purchase amount with a stamp.</p><button class="btn btn-dark" onclick="saveSettings()">Save settings</button><p class="small" id="setMsg"></p></div>
+<div class="card"><b>Business Profile</b><label>Logo</label><div style="display:flex;gap:12px;align-items:center"><div class="avatar" style="width:72px;height:72px;font-size:24px;background:#D4AF5A;color:#000" id="setLogo">N</div><button class="btn">Replace logo</button></div><p class="small">PNG or JPG, max 2MB</p><label>Business Name</label><input id="setShop" value="New Shop"><label>Contact Email</label><input id="setEmail" placeholder="you@shop.com"><label>Phone</label><div style="display:flex;gap:8px"><select style="width:130px"><option>Italy +39</option><option>Egypt +20</option><option>UAE +971</option></select><input id="setPhone" placeholder="344 551 9686"></div><label>Address</label><input id="setAddr" placeholder="Via Aurelia 331, Roma"><label>Currency</label><select id="setCurr"><option>EUR - Euro</option><option>EGP - Egyptian Pound</option><option>USD - Dollar</option></select><p class="small">Used when staff record a purchase amount with a stamp.</p><button class="btn btn-gold" onclick="saveSettings()">Save settings</button><p class="small" id="setMsg"></p></div>
 <div class="card"><b>Account settings</b><label>Email Address</label><input id="accEmail" placeholder="you@shop.com"><button class="btn">Save account</button></div>
 <div class="card"><b>Export</b><button class="btn" onclick="exportCSV()">Download customers (CSV)</button></div>
 </section>
@@ -104,7 +111,7 @@ input,select{width:100%;padding:12px;border-radius:12px;border:1px solid #D1D5DB
 </div>
 <script>
 let state={shop:'New Shop',tag:'Your tagline here',bg:'#E6EEF5',btnColor:'#FFFFFF',btnText:'#1A1A1A',goal:6,reward:'Free haircut',wall:'Fill',btnStyle:'Solid',round:'999px',shadow:'Soft',font:'DM Sans',title:'#1A1A1A'};
-let customers=[]; let links=[{name:'Instagram',url:'https://instagram.com/',on:true},{name:'TikTok',url:'https://tiktok.com/',on:true},{name:'Facebook',url:'https://facebook.com/',on:true},{name:'Loyalty Card',url:'#',on:true,desc:'Collect 6 stamps -> Free haircut'}];
+let customers=[]; let links=[{name:'Instagram',url:'https://instagram.com/',on:true},{name:'TikTok',url:'https://tiktok.com/',on:true},{name:'Facebook',url:'https://facebook.com/',on:true},{name:'Loyalty Card',url:'#',on:true,desc:'Collect 6 stamps - Free haircut'}];
 function showTab(t){document.querySelectorAll('main section').forEach(s=>s.classList.add('hidden')); let el=document.getElementById('tab-'+t); if(el) el.classList.remove('hidden'); document.querySelectorAll('.mitem').forEach(b=>b.classList.toggle('on', b.dataset.tab===t)); window.scrollTo(0,0);}
 document.querySelectorAll('.mitem').forEach(b=>b.addEventListener('click',()=>{showTab(b.dataset.tab); document.querySelector('.side').classList.remove('open');}));
 function render(){
@@ -113,21 +120,28 @@ function render(){
  document.getElementById('sRew').textContent=customers.filter(c=>c.stamps>=state.goal).length;
  document.getElementById('aViews').textContent=customers.length*2; document.getElementById('aClicks').textContent=st;
  document.getElementById('sideShop').textContent=state.shop; document.getElementById('shopAvatar').textContent=state.shop[0]||'N'; document.getElementById('setLogo').textContent=state.shop[0]||'N';
- document.getElementById('prevName').textContent=state.shop; document.getElementById('prevTag').textContent=state.tag; document.getElementById('prevLogo').textContent=state.shop[0]||'N'; document.getElementById('previewPhone').style.background=state.bg; document.getElementById('previewPhone').style.fontFamily=state.font;
+ document.getElementById('prevName').textContent=state.shop; document.getElementById('prevTag').textContent=state.tag; document.getElementById('prevLogo').textContent=state.shop[0]||'N'; document.getElementById('previewPhone').style.background=state.bg;
  document.getElementById('qrShop2').textContent=state.shop;
  document.getElementById('cardGoalLabel').textContent=state.goal; document.getElementById('cardRewardLabel').textContent=state.reward;
- let dots=''; for(let i=0;i<state.goal;i++) dots+='○'; document.getElementById('cardDots').textContent=dots;
+ document.getElementById('cardGoalTop').textContent=state.goal; document.getElementById('cardRewardTop').textContent=state.reward;
+ document.getElementById('cardShopName').textContent=state.shop; document.getElementById('cardShopNameTop').textContent=state.shop;
+ let dots=''; for(let i=0;i<state.goal;i++) dots+='<div class="stamp">'+(i<st?'★':'○')+'</div>';
+ document.getElementById('cardVisual').innerHTML=dots; document.getElementById('cardVisualTop').innerHTML=dots;
+ let pct=state.goal?Math.round((st/state.goal)*100):0; if(pct>100) pct=100;
+ document.getElementById('cardProgress').style.width=pct+'%'; document.getElementById('cardProgressTop').style.width=pct+'%';
+ document.getElementById('cardProgressText').textContent=st+' / '+state.goal+' stamps - '+(state.goal-st)+' left for reward';
+ document.getElementById('cardProgressTextTop').textContent=st+' / '+state.goal+' stamps';
  let pl=''; links.filter(l=>l.on).forEach(l=>{pl+='<div class="pbtn" style="background:'+state.btnColor+';color:'+state.btnText+';border-radius:'+state.round+'">'+l.name+(l.desc?'<br><small>'+l.desc+'</small>':'')+'</div>'}); document.getElementById('prevLinks').innerHTML=pl||'<p class="small">No links yet</p>';
- let ll=''; links.forEach((l,i)=>{ll+='<div class="row"><span><b>'+l.name+'</b><br><span class="small">'+(l.desc||l.url)+' - 0 clicks - 30 days</span></span><span><div class="switch '+(l.on?'on':'')+'" onclick="toggleLink('+i+',this)"></div> <button class="btn" onclick="moveLink('+i+',-1)">Up</button> <button class="btn" onclick="moveLink('+i+',1)">Down</button></span></div>'}); document.getElementById('linksList').innerHTML=ll;
- let cl=''; customers.forEach((c,i)=>{cl+='<div class="row"><span><b>'+c.name+'</b> - '+c.stamps+' / '+state.goal+' stamps</span><span><button class="btn btn-green" onclick="giveStamp('+i+')">+ 1 Stamp</button> <button class="btn" onclick="delCust('+i+')">Delete</button></span></div>'}); document.getElementById('custList').innerHTML=cl||'<p class="small">No customers yet. Add your first customer.</p>';
+ let ll=''; links.forEach((l,i)=>{ll+='<div class="row"><span><b>'+l.name+'</b><br><span class="small">'+(l.desc||l.url)+' - 0 clicks</span></span><span><div class="switch '+(l.on?'on':'')+'" onclick="toggleLink('+i+',this)"></div> <button class="btn" onclick="moveLink('+i+',-1)">Up</button> <button class="btn" onclick="moveLink('+i+',1)">Down</button></span></div>'}); document.getElementById('linksList').innerHTML=ll;
+ let cl=''; customers.forEach((c,i)=>{cl+='<div class="row"><span><b>'+c.name+'</b> - '+c.stamps+' / '+state.goal+' stamps</span><span><button class="btn btn-gold" onclick="giveStamp('+i+')">+ 1 Stamp</button> <button class="btn" onclick="delCust('+i+')">Delete</button></span></div>'}); document.getElementById('custList').innerHTML=cl||'<p class="small">No customers yet. Add your first customer.</p>';
  let sl=''; customers.forEach(c=>{sl+='<div class="row"><span>'+c.name+' - '+c.stamps+' stamps</span></div>'}); document.getElementById('stampList').innerHTML=sl||'<p class="small">No customers yet.</p>';
  let bars=''; [0,0,0,0,0,Math.min(st,10)].forEach(v=>{bars+='<div style="height:'+(4+v*8)+'px"></div>'}); let cb=document.getElementById('chartBars'); if(cb) cb.innerHTML=bars;
  document.getElementById('topLinks').innerHTML=links.map(l=>'<div class="row"><span>'+l.name+'</span><b>0</b></div>').join('');
- document.getElementById('traffic').innerHTML=['Direct','l.instagram.com','ig','m.facebook.com','facebook.com'].map(s=>'<div class="row"><span>'+s+'</span><b>0</b></div>').join('');
- let bgs=['#FDECEC','#FFF6E5','#E6F4EA','#E6EEF5','#2B1A12','#111111']; let bgh=''; bgs.forEach(c=>{bgh+='<span class="dot '+(state.bg===c?'on':'')+'" style="background:'+c+'" onclick="setBg(\''+c+'\',this)"></span>'}); document.getElementById('bgDots').innerHTML=bgh;
+ document.getElementById('traffic').innerHTML=['Direct','Instagram','Facebook'].map(s=>'<div class="row"><span>'+s+'</span><b>0</b></div>').join('');
+ let bgs=['#FDECEC','#FFF6E5','#E6F4EA','#E6EEF5','#0A0A0A','#D4AF5A']; let bgh=''; bgs.forEach(c=>{bgh+='<span class="dot '+(state.bg===c?'on':'')+'" style="background:'+c+'" onclick="setBg(\''+c+'\',this)"></span>'}); document.getElementById('bgDots').innerHTML=bgh;
 }
 function setBg(c,el){state.bg=c; document.getElementById('bgHex').value=c; render();}
-function setWall(v,el){state.wall=v; document.querySelectorAll('#tab-linkbio .pill').forEach(p=>p.classList.remove('on')); el.classList.add('on');}
+function setWall(v,el){state.wall=v; el.classList.add('on');}
 function setBtnStyle(v,el){state.btnStyle=v; el.classList.add('on');}
 function setRound(v,el){state.round=v; el.classList.add('on'); render();}
 function setShadow(v,el){state.shadow=v; el.classList.add('on');}
@@ -135,7 +149,7 @@ function toggleLink(i,el){links[i].on=!links[i].on; render();}
 function moveLink(i,d){let j=i+d; if(j<0||j>=links.length) return; let t=links[i]; links[i]=links[j]; links[j]=t; render();}
 function addLink(){let n=prompt('Link name - Example: WhatsApp'); if(!n) return; links.push({name:n,url:'https://',on:true}); render();}
 function saveBio(){state.shop=document.getElementById('lbName').value||'New Shop'; state.tag=document.getElementById('lbTag').value||'Your tagline here'; state.bg=document.getElementById('bgHex').value||state.bg; state.btnColor=document.getElementById('btnColor').value; state.btnText=document.getElementById('btnText').value; state.title=document.getElementById('titleColor').value; state.font=document.getElementById('fontSel').value; document.getElementById('setShop').value=state.shop; render(); alert('Profile saved');}
-function saveCard(){let custom=document.getElementById('goalCustom').value; state.goal=custom?parseInt(custom):parseInt(document.getElementById('goalSel').value); state.reward=document.getElementById('rewardName').value; links.find(l=>l.name==='Loyalty Card').desc='Collect '+state.goal+' stamps -> '+state.reward; render(); document.getElementById('cardMsg').textContent='Saved - Reward at '+state.goal+' stamps: '+state.reward;}
+function saveCard(){let custom=document.getElementById('goalCustom').value; state.goal=custom?parseInt(custom):parseInt(document.getElementById('goalSel').value); state.reward=document.getElementById('rewardName').value; links.find(l=>l.name==='Loyalty Card').desc='Collect '+state.goal+' stamps - '+state.reward; render(); document.getElementById('cardMsg').textContent='Saved - Reward at '+state.goal+' stamps: '+state.reward;}
 function saveSettings(){state.shop=document.getElementById('setShop').value||'New Shop'; document.getElementById('lbName').value=state.shop; render(); document.getElementById('setMsg').textContent='Saved! Business profile updated.';}
 function addCust(){let n=document.getElementById('cname').value.trim(); if(!n) return alert('Write customer name'); customers.push({name:n,stamps:0,last:''}); document.getElementById('cname').value=''; render();}
 function delCust(i){customers.splice(i,1); render();}
