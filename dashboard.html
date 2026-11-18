@@ -22,162 +22,157 @@
 </style><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
 <title>Timbryf - Dashboard</title>
 <style>
-*{box-sizing:border-box} body{margin:0;font-family:-apple-system,system-ui,sans-serif;background:#F2F4F7;color:#111827}
-a{color:inherit;text-decoration:none} button{cursor:pointer}
-.layout{display:flex;min-height:100vh}
-.side{width:260px;background:#fff;border-right:1px solid #E5E7EB;padding:16px;position:sticky;top:0;height:100vh;overflow:auto;flex-shrink:0}
-.logo{font-weight:900;font-size:22px;letter-spacing:.5px}.logo b{color:#0F766E}
-.mitem{display:flex;gap:10px;align-items:center;padding:11px 12px;border-radius:12px;color:#4B5563;margin:3px 0;cursor:pointer;border:0;background:transparent;width:100%;text-align:left;font-size:15px}
-.mitem.on{background:#E6EEF5;color:#111827;font-weight:700}.mitem.green{background:#E6F7EE;color:#0B7A43;font-weight:700}
-.help{background:#16A34A;color:#fff;border:0;padding:13px;border-radius:12px;width:100%;font-weight:800;margin:12px 0}
-.lang{display:flex;border:1px solid #D1D5DB;border-radius:999px;overflow:hidden;width:150px}.lang button{flex:1;border:0;padding:8px;background:#fff}.lang button.on{background:#16A34A;color:#fff}
-.shop{display:flex;gap:10px;align-items:center;margin-top:16px;padding-top:14px;border-top:1px solid #E5E7EB}
-.avatar{width:44px;height:44px;border-radius:50%;background:#E6F7EE;display:flex;align-items:center;justify-content:center;font-weight:900}
-.main{flex:1;padding:22px;max-width:980px;margin:0 auto;width:100%}
+*{box-sizing:border-box}body{margin:0;font-family:-apple-system,system-ui,sans-serif;background:#F2F4F7;color:#111}
+.top{position:sticky;top:0;z-index:50;background:#111;color:#fff;padding:12px;display:flex;align-items:center;gap:10px}
+.top b{font-size:20px}.top b span{color:#D4AF5A}.top small{margin-left:auto;color:#D4AF5A;font-size:12px}
+.menuBtn{font-size:22px;background:#fff;border:1px solid #D4AF5A;border-radius:10px;padding:6px 12px;cursor:pointer}
+.side{position:fixed;left:-280px;top:0;width:260px;height:100vh;background:#fff;border-right:1px solid #ddd;padding:16px;z-index:99;transition:.25s;overflow:auto}
+.side.open{left:0}
+.overlay{display:none;position:fixed;inset:0;background:rgba(0,0,0,.5);z-index:90}
+.overlay.show{display:block}
+.side .logo{background:#111;color:#fff;padding:12px;border-radius:14px;text-align:center;font-weight:900;font-size:22px;margin-bottom:14px}
+.side .logo span{color:#D4AF5A}
+.mitem{display:block;width:100%;text-align:left;padding:12px;border-radius:12px;border:0;background:transparent;font-size:16px;cursor:pointer;margin:2px 0}
+.mitem.on{background:#111;color:#fff;font-weight:700}
+.closeBtn{float:right;border:1px solid #ddd;background:#fff;border-radius:10px;padding:6px 12px;font-size:18px;cursor:pointer}
+.main{padding:16px;max-width:900px;margin:0 auto}
 .card{background:#fff;border:1px solid #E2E8F0;border-radius:18px;padding:18px;margin:14px 0}
-.grid3{display:grid;grid-template-columns:1fr 1fr 1fr;gap:12px}
-.stat{background:#fff;border:1px solid #E2E8F0;border-radius:16px;padding:16px}.stat small{color:#64748B}.stat b{font-size:28px}
-input,select{width:100%;padding:12px;border-radius:12px;border:1px solid #D1D5DB;background:#F8FAFC;margin-top:6px;font-size:15px}
-.btn{padding:12px 16px;border-radius:12px;border:1px solid #D1D5DB;background:#F8FAFC;font-weight:700}
-.btn-dark{background:#111827;color:#fff;border:0}.btn-green{background:#16A34A;color:#fff;border:0}.btn-gold{background:#D4AF5A;color:#000;border:0}
-.pill{border:1px solid #CBD5E1;padding:9px 14px;border-radius:999px;background:#fff}.pill.on{border:2px solid #111827;font-weight:800}
-.dot{width:34px;height:34px;border-radius:50%;border:2px solid #E2E8F0;display:inline-block;cursor:pointer}.dot.on{outline:3px solid #111827}
-.switch{width:52px;height:30px;background:#CBD5E1;border-radius:999px;position:relative;cursor:pointer;flex-shrink:0}.switch:after{content:'';position:absolute;top:3px;left:3px;width:24px;height:24px;background:#fff;border-radius:50%;transition:.2s}.switch.on{background:#111827}.switch.on:after{left:25px}
-.row{display:flex;justify-content:space-between;gap:12px;align-items:center;padding:14px 0;border-bottom:1px solid #F1F5F9}
-.phone{max-width:360px;margin:0 auto;background:#E6EEF5;border:10px solid #1F2937;border-radius:42px;padding:20px;min-height:560px;text-align:center}
-.phone .pbtn{background:#fff;border-radius:999px;padding:14px;margin:8px 0;display:flex;gap:10px;align-items:center;justify-content:center;box-shadow:0 4px 14px rgba(0,0,0,.08)}
-.bars{display:flex;align-items:flex-end;gap:6px;height:90px;margin:12px 0}.bars div{flex:1;background:#334155;border-radius:4px 4px 0 0;min-height:4px}
-.small{color:#64748B;font-size:13px;line-height:1.5}
-@media(max-width:820px){.side{position:fixed;left:-280px;top:0;z-index:99;transition:.25s;box-shadow:0 0 40px rgba(0,0,0,.25)}.side.open{left:0}.grid3{grid-template-columns:1fr}.main{padding:12px}.mobtop{display:flex!important}}
+.stat{background:#fff;border:1px solid #E2E8F0;border-radius:16px;padding:16px;margin:8px 0}
+.stat b{font-size:28px}.small{color:#64748B;font-size:13px;line-height:1.5}
+input,select{width:100%;padding:12px;border-radius:12px;border:1px solid #D1D5DB;background:#F8FAFC;margin:6px 0;font-size:15px}
+.btn{padding:12px 16px;border-radius:12px;border:0;background:#111;color:#fff;font-weight:700;cursor:pointer;margin:4px 0}
+.btn-green{background:#16A34A}.btn-gold{background:#D4AF5A;color:#000}
 .hidden{display:none}
+.cdot{width:40px;height:40px;border-radius:50%;border:2px solid #ddd;display:inline-block;cursor:pointer;margin:4px}
+.cdot.on{outline:3px solid #D4AF5A}
+.logoBox{width:80px;height:80px;border-radius:50%;background:#eee;display:flex;align-items:center;justify-content:center;font-weight:900;font-size:26px;overflow:hidden;margin:10px auto}
+.logoBox img{width:100%;height:100%;object-fit:cover}
+.cardPrev{border-radius:20px;padding:18px;color:#fff;background:#111}
+.row{display:flex;justify-content:space-between;gap:10px;align-items:center;padding:12px 0;border-bottom:1px solid #F1F5F9}
 </style></head>
 <body>
-<div class="mobtop" style="display:none;position:sticky;top:0;z-index:50;background:#fff;border-bottom:1px solid #E5E7EB;padding:10px 12px;align-items:center;gap:10px"><button onclick="document.querySelector('.side').classList.toggle('open')" style="font-size:22px;border:1px solid #D1D5DB;background:#fff;border-radius:10px;padding:6px 12px">☰</button><b style="font-size:19px">Timbryf.</b><span style="margin-left:auto;font-size:13px;color:#64748B">New Shop - Trial 14 days</span></div>
-<div class="layout">
-<aside class="side open">
-<div class="logo">Timbryf<span style="color:#16A34A">.</span></div>
-<button class="mitem on" data-tab="overview">Overview</button>
-<button class="mitem" data-tab="cards">Cards</button>
-<button class="mitem" data-tab="customers">Customers</button>
-<button class="mitem" data-tab="staffstamp">Staff Stamp</button>
-<button class="mitem" data-tab="analytics">Analytics</button>
-<button class="mitem" data-tab="campaigns">Campaigns</button>
-<button class="mitem" data-tab="branches">Branches</button>
-<button class="mitem" data-tab="staff">Staff</button>
-<button class="mitem" data-tab="linkbio">Link in bio</button>
-<button class="mitem" data-tab="ai">AI Agent</button>
-<button class="mitem" data-tab="billing">Billing</button>
-<button class="mitem green" data-tab="settings">Settings</button>
-<button class="help" onclick="location.href='https://wa.me/393445519686'">Need help? WhatsApp Us</button>
-<button class="mitem" data-tab="new">What's new</button>
-<div class="lang"><button class="on">English</button><button>عربي</button></div>
-<div class="shop"><div class="avatar" id="shopAvatar">N</div><div><b id="sideShop">New Shop</b><div class="small" id="sidePlan">Starter Plan · 1 branch</div></div></div>
+<div class="top"><button class="menuBtn" onclick="openSide()">☰</button><b>TIMBRYF<span>.it</span></b><small id="topShop">New Shop - Trial 14 days</small></div>
+<div class="overlay" id="overlay" onclick="closeSide()"></div>
+<aside class="side" id="side"><button class="closeBtn" onclick="closeSide()">✕</button><div class="logo">TIMBRYF<span>.it</span></div>
+<button class="mitem" onclick="go('overview',this)">Overview</button>
+<button class="mitem" onclick="go('cards',this)">Cards</button>
+<button class="mitem" onclick="go('customers',this)">Customers</button>
+<button class="mitem" onclick="go('staffstamp',this)">Staff Stamp</button>
+<button class="mitem on" onclick="go('analytics',this)">Analytics</button>
+<button class="mitem" onclick="go('campaigns',this)">Campaigns</button>
+<button class="mitem" onclick="go('branches',this)">Branches</button>
+<button class="mitem" onclick="go('staff',this)">Staff</button>
+<button class="mitem" onclick="go('linkbio',this)">Link in bio</button>
+<button class="mitem" onclick="go('ai',this)">AI Agent</button>
+<button class="mitem" onclick="go('billing',this)">Billing</button>
+<button class="mitem" onclick="go('settings',this)">Settings</button>
+<button class="mitem" onclick="go('new',this)">What's new</button>
+<p class="small" style="margin-top:16px">Need help? WhatsApp: 344 551 9686</p>
+<div style="margin-top:12px"><b id="sideShop">New Shop</b><div class="small">Starter Plan - 1 branch</div></div>
 </aside>
-
 <main class="main">
-<!-- OVERVIEW -->
-<section id="tab-overview">
-<h1 style="font-size:32px;margin:4px 0">Overview</h1><p class="small">Welcome back. This is your shop dashboard - empty for a new shop. When your customers come, it fills by itself.</p>
-<div class="card"><b>Trial</b><p class="small">Your free trial ends in 14 days. No card required for the trial.</p><button class="btn btn-dark" onclick="location.href='pay.html'">Upgrade - See plans</button></div>
-<div class="grid3"><div class="stat"><small>Stamps given</small><br><b id="sStamps">0</b></div><div class="stat"><small>Customers</small><br><b id="sCust">0</b></div><div class="stat"><small>Rewards</small><br><b id="sRew">0</b></div></div>
-<div class="card"><b>Live preview - what the customer sees</b><p class="small">This preview updates when you change Name, Background, Buttons and Links in Settings / Link in bio.</p>
-<div class="phone" id="previewPhone" style="background: rgb(230, 238, 245); font-family: &quot;DM Sans&quot;;"><div style="text-align:right">Share</div><div style="width:92px;height:92px;border-radius:50%;background:#D1D5DB;margin:18px auto;display:flex;align-items:center;justify-content:center;font-weight:900;font-size:28px" id="prevLogo">N</div><h2 id="prevName" style="margin:6px 0">New Shop</h2><p class="small" id="prevTag">Your tagline here</p><div id="prevLinks"><div class="pbtn" style="background:#FFFFFF;color:#1A1A1A;border-radius:999px">Instagram</div><div class="pbtn" style="background:#FFFFFF;color:#1A1A1A;border-radius:999px">TikTok</div><div class="pbtn" style="background:#FFFFFF;color:#1A1A1A;border-radius:999px">Facebook</div><div class="pbtn" style="background:#FFFFFF;color:#1A1A1A;border-radius:999px">Loyalty Card<br><small>Collect 6 stamps -&gt; Free haircut</small></div></div><p class="small" id="prevFooter">Loyalty cards for Apple &amp; Google Wallet</p></div></div>
+<section id="tab-overview" class="hidden">
+<h1>Overview</h1><p class="small">Welcome back. This is your shop dashboard - empty for a new shop. When your customers come, it fills by itself.</p>
+<div class="card"><b>Trial</b><p class="small">Your free trial ends in 14 days. No card required.</p><button class="btn" onclick="go('billing',null)">Upgrade - See plans</button></div>
+<div class="stat"><span class="small">Stamps given</span><br><b id="sStamps">0</b></div>
+<div class="stat"><span class="small">Customers</span><br><b id="sCust">0</b></div>
+<div class="stat"><span class="small">Rewards</span><br><b id="sRew">0</b></div>
+<div class="card"><b>Live preview - what the customer sees</b><p class="small">This preview updates when you change the shop name in Settings.</p><div class="logoBox" id="prevLogo">N</div><h2 id="prevName" style="text-align:center">New Shop</h2><p class="small" style="text-align:center">Loyalty cards for iOS &amp; Google Wallet</p></div>
 </section>
-
-<!-- CARDS -->
 <section id="tab-cards" class="hidden">
-<h1>Cards</h1><p class="small">Your loyalty card. Choose how many stamps for the reward - 5, 8, 10, 15, 20, 30 or any number.</p>
-<div class="card"><b>Loyalty Card</b><p>Collect <span id="cardGoalLabel">6</span> stamps -&gt; <span id="cardRewardLabel">Free haircut</span></p><div id="cardDots" style="font-size:26px;letter-spacing:4px">○○○○○○</div><label>Stamps for reward</label><select id="goalSel"><option>5</option><option selected="">6</option><option>8</option><option>10</option><option>15</option><option>20</option><option>30</option></select><label>Or write any number</label><input id="goalCustom" type="number" min="2" max="100" placeholder="Example: 12, 25..."><label>Reward name</label><input id="rewardName" value="Free haircut"><button class="btn btn-dark" onclick="saveCard()">Save card</button><p class="small" id="cardMsg"></p></div>
-<div class="card"><b>Staff Stamp - 1 stamp per day</b><p class="small">Show the QR only after the customer has paid. 1 scan = 1 stamp per day. If the customer already got a stamp today: Thank you, you honoured us today. We wait for you next time.</p><div style="background:#fff;border:1px dashed #CBD5E1;padding:14px;text-align:center;border-radius:14px"><b id="qrShop2">New Shop</b><br><img src="https://api.qrserver.com/v1/create-qr-code/?size=150x150&amp;data=https://timbryf.vercel.app/scan" style="width:150px"><br><span class="small">timbryf.vercel.app/scan</span></div><button class="btn" onclick="window.print()">Print QR - Keep it in the drawer</button></div>
+<h1>Cards</h1><p class="small">Your loyalty card. Choose color, logo, how many stamps - 5, 8, 10, 15, 20, 30 or any number.</p>
+<div class="card"><b>Your card - live</b><div class="cardPrev" id="cardBox" style="background: rgb(17, 17, 17); color: rgb(255, 255, 255);"><div style="display:flex;gap:10px;align-items:center"><div class="logoBox" id="cardLogo" style="width:56px;height:56px;margin:0">N</div><div><b id="cardShop">New Shop</b><div style="font-size:13px">TIMBRYF.it</div></div></div><p>Collect <span id="cardGoal2">6</span> stamps -&gt; <span id="cardReward2">Free haircut</span></p><div id="cardDots" style="font-size:22px">○ ○ ○ ○ ○ ○ </div><p style="font-size:12px">1 stamp per day - After payment - QR in drawer</p></div>
+<div style="margin-top:14px"><b>Card color</b><p class="small">Tap a color - the card above changes now.</p><div id="colorDots"><span class="cdot on" style="background:#111111" title="Black + Gold" onclick="pickColor(0)"></span><span class="cdot " style="background:#D4AF5A" title="Gold + Black" onclick="pickColor(1)"></span><span class="cdot " style="background:#FFFFFF" title="White" onclick="pickColor(2)"></span><span class="cdot " style="background:#B91C1C" title="Red" onclick="pickColor(3)"></span><span class="cdot " style="background:#15803D" title="Green" onclick="pickColor(4)"></span><span class="cdot " style="background:#1D4ED8" title="Blue" onclick="pickColor(5)"></span><span class="cdot " style="background:#7C3AED" title="Purple" onclick="pickColor(6)"></span><span class="cdot " style="background:#FF6B35" title="Orange" onclick="pickColor(7)"></span></div><p class="small" id="colorName">Black + Gold</p></div>
+<div style="margin-top:14px"><b>Shop logo</b><p class="small">Your logo shows in the card, in the QR box, and in the preview.</p><div class="logoBox" id="logoPreview">N</div><input type="file" accept="image/*" onchange="onLogo(this)"><p class="small" id="logoMsg"></p></div></div>
+<div class="card"><b>Loyalty Card</b><p>Collect <span id="cardGoal">6</span> stamps -&gt; <span id="cardReward">Free haircut</span></p><div id="cardDots2" style="font-size:26px">○ ○ ○ ○ ○ ○ </div><label>Stamps for reward</label><select id="goalSel"><option>5</option><option selected="">6</option><option>8</option><option>10</option><option>15</option><option>20</option><option>30</option></select><label>Or write any number</label><input id="goalCustom" type="number" min="2" max="100" placeholder="Example: 12, 25..."><label>Reward name</label><input id="rewardName" value="Free haircut"><button class="btn" onclick="saveCard()">Save card</button><p class="small" id="cardMsg"></p></div>
+<div class="card"><b>Staff Stamp - 1 stamp per day</b><p class="small">Show the QR only after the customer has paid. If the customer already got a stamp today: Thank you, you honoured us today. We wait for you next time.</p><div style="border:1px dashed #ccc;padding:14px;text-align:center;border-radius:14px"><b id="qrShop">New Shop</b><br><div class="logoBox" id="qrLogo" style="width:64px;height:64px">N</div><img src="https://api.qrserver.com/v1/create-qr-code/?size=150x150&amp;data=https://timbryf.vercel.app/scan" style="width:150px"><br><span class="small">timbryf.vercel.app/scan</span></div></div>
 </section>
-
-<!-- CUSTOMERS -->
-<section id="tab-customers" class="hidden">
-<h1>Customers</h1><p class="small">Empty for a new shop. Add your first customer and give stamps.</p>
-<div class="card"><input id="cname" placeholder="Customer name"><button class="btn btn-dark" onclick="addCust()">+ Add customer</button><div id="custList"><p class="small">No customers yet. Add your first customer.</p></div></div>
-</section>
-
-<!-- STAFF STAMP -->
-<section id="tab-staffstamp" class="hidden">
-<h1>Staff Stamp</h1><p class="small">Staff gives the stamp here, after payment. 1 per day per customer.</p>
-<div class="card"><b>Give a stamp</b><input id="stampName" placeholder="Customer name"><button class="btn btn-green" onclick="staffStamp()">+ Give 1 Stamp</button><p class="small" id="stampMsg"></p><div id="stampList"><p class="small">No customers yet.</p></div></div>
-</section>
-
-<!-- ANALYTICS -->
-<section id="tab-analytics" class="hidden">
-<h1>Analytics</h1><p class="small">Last 30 days - starts at 0 for a new shop.</p>
-<div class="grid3"><div class="stat"><small>Views</small><br><b id="aViews">0</b></div><div class="stat"><small>Clicks</small><br><b id="aClicks">0</b></div><div class="stat"><small>Click rate</small><br><b>0%</b></div></div>
-<div class="card"><b>Chart</b><div class="bars" id="chartBars"><div style="height:4px"></div><div style="height:4px"></div><div style="height:4px"></div><div style="height:4px"></div><div style="height:4px"></div><div style="height:4px"></div></div><div style="display:flex;justify-content:space-between" class="small"><span>10-15</span><span>10-20</span><span>10-25</span><span>10-30</span><span>11-04</span><span>11-09</span></div><p class="small">Top links</p><div id="topLinks"><div class="row"><span>Instagram</span><b>0</b></div><div class="row"><span>TikTok</span><b>0</b></div><div class="row"><span>Facebook</span><b>0</b></div><div class="row"><span>Loyalty Card</span><b>0</b></div></div><p class="small">Traffic sources</p><div id="traffic"><div class="row"><span>Direct</span><b>0</b></div><div class="row"><span>l.instagram.com</span><b>0</b></div><div class="row"><span>ig</span><b>0</b></div><div class="row"><span>m.facebook.com</span><b>0</b></div><div class="row"><span>facebook.com</span><b>0</b></div></div></div>
-</section>
-
-<!-- CAMPAIGNS / BRANCHES / STAFF / AI / BILLING / NEW -->
-<section id="tab-campaigns" class="hidden"><h1>Campaigns</h1><div class="card"><p class="small">Send an offer to your customers. Starts empty.</p><input placeholder="Campaign title - Example: 20% this week"><button class="btn btn-dark">Create campaign</button></div></section>
-<section id="tab-branches" class="hidden"><h1>Branches</h1><div class="card"><p class="small">1 branch on Starter Plan. Add more on higher plans.</p><div class="row"><span>Main branch</span><b>Active</b></div><button class="btn">+ Add branch</button></div></section>
-<section id="tab-staff" class="hidden"><h1>Staff</h1><div class="card"><p class="small">Staff can give stamps. Add staff members here.</p><input placeholder="Staff name"><button class="btn btn-dark">+ Add staff</button></div></section>
-<section id="tab-ai" class="hidden"><h1>AI Agent</h1><div class="card"><p class="small">Your AI assistant answers customers and helps you with settings.</p><input placeholder="Ask the AI..."><button class="btn btn-dark">Ask</button></div></section>
-<section id="tab-billing" class="hidden"><h1>Billing</h1><div class="card"><b>Starter Plan - Trial 14 days</b><p class="small">No card for the trial. Pay only if you want to continue.</p><button class="btn btn-dark" onclick="location.href='pay.html'">See plans - Basic 29.99 - Pro 49.99 - Premium 79.99</button></div></section>
-<section id="tab-new" class="hidden"><h1>What's new</h1><div class="card"><p>- 1 stamp per day - anti-theft<br>- Polite message: Thank you, you honoured us today<br>- Settings inside dashboard<br>- Link in bio + Loyalty Card + Insights</p></div></section>
-
-<!-- LINK IN BIO -->
-<section id="tab-linkbio" class="hidden">
-<h1>Link in bio</h1><p class="small">Your public page - what customers see when they open your link.</p>
-<div class="card"><b>Profile</b><label>Name</label><input id="lbName" value="New Shop"><label>Tagline</label><input id="lbTag" placeholder="e.g. STEALING YOUR MORNINGS"><label>Background</label><div style="display:flex;gap:8px;margin:8px 0" id="bgDots"><span class="dot " style="background:#FDECEC" onclick="setBg('#FDECEC',this)"></span><span class="dot " style="background:#FFF6E5" onclick="setBg('#FFF6E5',this)"></span><span class="dot " style="background:#E6F4EA" onclick="setBg('#E6F4EA',this)"></span><span class="dot on" style="background:#E6EEF5" onclick="setBg('#E6EEF5',this)"></span><span class="dot " style="background:#2B1A12" onclick="setBg('#2B1A12',this)"></span><span class="dot " style="background:#111111" onclick="setBg('#111111',this)"></span></div><input id="bgHex" value="#E6EEF5"><button class="btn btn-dark" onclick="saveBio()">Save profile</button></div>
-<div class="card"><b>Design</b><p><b>Wallpaper</b></p><button class="pill on" onclick="setWall('Fill',this)">Fill</button> <button class="pill" onclick="setWall('Gradient',this)">Gradient</button> <button class="pill" onclick="setWall('Image',this)">Image</button><p class="small">The main background color is picked in Profile above.</p><p><b>Buttons</b></p><button class="pill on" onclick="setBtnStyle('Solid',this)">Solid</button> <button class="pill" onclick="setBtnStyle('Glass',this)">Glass</button> <button class="pill" onclick="setBtnStyle('Outline',this)">Outline</button><p><b>Corner roundness</b></p><button class="pill" onclick="setRound('0px',this)">Square</button> <button class="pill" onclick="setRound('12px',this)">Soft</button> <button class="pill on" onclick="setRound('999px',this)">Round</button><p><b>Button shadow</b></p><button class="pill" onclick="setShadow('None',this)">None</button> <button class="pill on" onclick="setShadow('Soft',this)">Soft</button> <button class="pill" onclick="setShadow('Strong',this)">Strong</button> <button class="pill" onclick="setShadow('Hard',this)">Hard</button><label>Button color</label><input id="btnColor" value="#FFFFFF"><label>Button text color</label><input id="btnText" value="#1A1A1A"></div>
-<div class="card"><b>Text</b><label>Font</label><select id="fontSel"><option>DM Sans</option><option>Inter</option><option>System</option></select><label>Title color</label><input id="titleColor" value="#1A1A1A"></div>
-<div class="card"><b>Header &amp; footer</b><div class="row"><span>Show logo wide<br><span class="small">For landscape logos - shows it full instead of in a circle.</span></span><div class="switch" onclick="this.classList.toggle('on')"></div></div><div class="row"><span>Hide Timbryf footer<br><span class="small">Available on paid plans.</span></span><div class="switch" onclick="this.classList.toggle('on')"></div></div></div>
-<div class="card"><b>Menu (PDF)</b><button class="btn">Upload PDF menu</button><p class="small">Up to 10 MB. Shows as the "MENU" button at the top.</p></div>
-<div class="card"><b>Links</b><button class="btn" onclick="addLink()">+ Add link</button><div id="linksList"><div class="row"><span><b>Instagram</b><br><span class="small">https://instagram.com/ - 0 clicks - 30 days</span></span><span><div class="switch on" onclick="toggleLink(0,this)"></div> <button class="btn" onclick="moveLink(0,-1)">Up</button> <button class="btn" onclick="moveLink(0,1)">Down</button></span></div><div class="row"><span><b>TikTok</b><br><span class="small">https://tiktok.com/ - 0 clicks - 30 days</span></span><span><div class="switch on" onclick="toggleLink(1,this)"></div> <button class="btn" onclick="moveLink(1,-1)">Up</button> <button class="btn" onclick="moveLink(1,1)">Down</button></span></div><div class="row"><span><b>Facebook</b><br><span class="small">https://facebook.com/ - 0 clicks - 30 days</span></span><span><div class="switch on" onclick="toggleLink(2,this)"></div> <button class="btn" onclick="moveLink(2,-1)">Up</button> <button class="btn" onclick="moveLink(2,1)">Down</button></span></div><div class="row"><span><b>Loyalty Card</b><br><span class="small">Collect 6 stamps -&gt; Free haircut - 0 clicks - 30 days</span></span><span><div class="switch on" onclick="toggleLink(3,this)"></div> <button class="btn" onclick="moveLink(3,-1)">Up</button> <button class="btn" onclick="moveLink(3,1)">Down</button></span></div></div></div>
-</section>
-
-<!-- SETTINGS -->
-<section id="tab-settings" class="hidden">
-<h1>Settings</h1><p class="small">Manage your business profile and preferences.</p>
-<div class="card"><b>Business Profile</b><label>Logo *</label><div style="display:flex;gap:12px;align-items:center"><div class="avatar" style="width:72px;height:72px;font-size:24px" id="setLogo">N</div><button class="btn">Replace logo</button></div><p class="small">PNG or JPG, max 2MB</p><label>Business Name</label><input id="setShop" value="New Shop"><label>Contact Email</label><input id="setEmail" placeholder="you@shop.com"><label>Phone</label><div style="display:flex;gap:8px"><select style="width:130px"><option>Italy +39</option><option>Egypt +20</option><option>UAE +971</option></select><input id="setPhone" placeholder="344 551 9686"></div><label>Address</label><input id="setAddr" placeholder="Via Aurelia 331, Roma"><label>Currency</label><select id="setCurr"><option>EUR - Euro</option><option>EGP - Egyptian Pound</option><option>USD - Dollar</option></select><p class="small">Used when staff record a purchase amount with a stamp.</p><button class="btn btn-dark" onclick="saveSettings()">Save settings</button><p class="small" id="setMsg"></p></div>
-<div class="card"><b>Account settings</b><label>Email Address</label><input id="accEmail" placeholder="you@shop.com"><button class="btn">Save account</button></div>
-<div class="card"><b>Export</b><button class="btn" onclick="exportCSV()">Download customers (CSV)</button></div>
-</section>
-
+<section id="tab-customers" class="hidden"><h1>Customers</h1><p class="small">Empty for a new shop. Add your first customer.</p><div class="card"><input id="cname" placeholder="Customer name"><button class="btn" onclick="addCust()">+ Add customer</button><div id="custList"><p class="small">No customers yet.</p></div></div></section>
+<section id="tab-staffstamp" class="hidden"><h1>Staff Stamp</h1><p class="small">Staff gives the stamp here, after payment. 1 per day.</p><div class="card"><input id="stampName" placeholder="Customer name"><button class="btn btn-green" onclick="staffStamp()">+ Give 1 Stamp</button><p class="small" id="stampMsg"></p><div id="stampList"><p class="small">No customers yet.</p></div></div></section>
+<section id="tab-analytics" class=""><h1>Analytics</h1><p class="small">Last 30 days - starts at 0 for a new shop.</p><div class="stat"><span class="small">Views</span><br><b>0</b></div><div class="stat"><span class="small">Clicks</span><br><b>0</b></div><div class="stat"><span class="small">Click rate</span><br><b>0%</b></div></section>
+<section id="tab-campaigns" class="hidden"><h1>Campaigns</h1><div class="card"><p class="small">Send an offer to your customers. Starts empty.</p><input placeholder="Campaign title - Example: 20% this week"><button class="btn">Create campaign</button><div style="margin-top:14px"><b>Porta 5 Amici - Bring 5 friends</b><p class="small">Share your link, when 5 friends join you get a reward.</p><button class="btn btn-gold" onclick="copyLink()">Copy referral link</button><p class="small" id="refMsg"></p></div></div></section>
+<section id="tab-branches" class="hidden"><h1>Branches</h1><div class="card"><p class="small">1 branch on Starter Plan.</p><div class="row"><span>Main branch</span><b>Active</b></div><button class="btn">+ Add branch</button></div></section>
+<section id="tab-staff" class="hidden"><h1>Staff</h1><div class="card"><p class="small">Staff can give stamps.</p><input placeholder="Staff name"><button class="btn">+ Add staff</button></div></section>
+<section id="tab-linkbio" class="hidden"><h1>Link in bio</h1><div class="card"><b>Profile</b><label>Name</label><input id="lbName" value="New Shop"><label>Tagline</label><input id="lbTag" value="Your tagline here"><button class="btn" onclick="saveBio()">Save profile</button><p class="small" id="bioMsg"></p></div><div class="card"><b>Links</b><div id="linksList"><div class="row"><span>Instagram</span><b>0</b></div><div class="row"><span>TikTok</span><b>0</b></div><div class="row"><span>Facebook</span><b>0</b></div><div class="row"><span>Loyalty Card</span><b>0</b></div></div><button class="btn" onclick="addLink()">+ Add link</button></div></section>
+<section id="tab-ai" class="hidden"><h1>AI Agent</h1><div class="card"><p class="small">Your AI assistant helps you with settings.</p><input placeholder="Ask the AI..."><button class="btn">Ask</button></div></section>
+<section id="tab-billing" class="hidden"><h1>Billing</h1><div class="card"><b>Starter Plan - Trial 14 days</b><p class="small">No card for the trial.</p><p><b>Basic 29.99€</b> - <b>Pro 49.99€</b> - <b>Premium 79.99€</b></p><button class="btn" onclick="location.href='pay.html'">See plans</button></div></section>
+<section id="tab-settings" class="hidden"><h1>Settings</h1><div class="card"><b>Business Profile</b><label>Business Name</label><input id="setShop" value="New Shop"><label>Phone</label><input id="setPhone" placeholder="344 551 9686"><label>Address</label><input id="setAddr" placeholder="Via Aurelia 331, Roma"><button class="btn" onclick="saveSettings()">Save settings</button><p class="small" id="setMsg"></p></div></section>
+<section id="tab-new" class="hidden"><h1>What's new</h1><div class="card"><p>- 1 stamp per day<br>- Thank you, you honoured us today<br>- Link in bio + Loyalty Card</p></div></section>
 </main>
-</div>
 <script>
-let state={shop:'New Shop',tag:'Your tagline here',bg:'#E6EEF5',btnColor:'#FFFFFF',btnText:'#1A1A1A',goal:6,reward:'Free haircut',wall:'Fill',btnStyle:'Solid',round:'999px',shadow:'Soft',font:'DM Sans',title:'#1A1A1A'};
-let customers=[]; let links=[{name:'Instagram',url:'https://instagram.com/',on:true},{name:'TikTok',url:'https://tiktok.com/',on:true},{name:'Facebook',url:'https://facebook.com/',on:true},{name:'Loyalty Card',url:'#',on:true,desc:'Collect 6 stamps -> Free haircut'}];
-function showTab(t){document.querySelectorAll('main section').forEach(s=>s.classList.add('hidden')); let el=document.getElementById('tab-'+t); if(el) el.classList.remove('hidden'); document.querySelectorAll('.mitem').forEach(b=>b.classList.toggle('on', b.dataset.tab===t)); window.scrollTo(0,0);}
-document.querySelectorAll('.mitem').forEach(b=>b.addEventListener('click',()=>{showTab(b.dataset.tab); document.querySelector('.side').classList.remove('open');}));
-function render(){
- document.getElementById('sCust').textContent=customers.length;
- let st=customers.reduce((s,c)=>s+c.stamps,0); document.getElementById('sStamps').textContent=st;
- document.getElementById('sRew').textContent=customers.filter(c=>c.stamps>=state.goal).length;
- document.getElementById('aViews').textContent=customers.length*2; document.getElementById('aClicks').textContent=st;
- document.getElementById('sideShop').textContent=state.shop; document.getElementById('shopAvatar').textContent=state.shop[0]||'N'; document.getElementById('setLogo').textContent=state.shop[0]||'N';
- document.getElementById('prevName').textContent=state.shop; document.getElementById('prevTag').textContent=state.tag; document.getElementById('prevLogo').textContent=state.shop[0]||'N'; document.getElementById('previewPhone').style.background=state.bg; document.getElementById('previewPhone').style.fontFamily=state.font;
- document.getElementById('qrShop2').textContent=state.shop;
- document.getElementById('cardGoalLabel').textContent=state.goal; document.getElementById('cardRewardLabel').textContent=state.reward;
- let dots=''; for(let i=0;i<state.goal;i++) dots+='○'; document.getElementById('cardDots').textContent=dots;
- let pl=''; links.filter(l=>l.on).forEach(l=>{pl+='<div class="pbtn" style="background:'+state.btnColor+';color:'+state.btnText+';border-radius:'+state.round+'">'+l.name+(l.desc?'<br><small>'+l.desc+'</small>':'')+'</div>'}); document.getElementById('prevLinks').innerHTML=pl||'<p class="small">No links yet</p>';
- let ll=''; links.forEach((l,i)=>{ll+='<div class="row"><span><b>'+l.name+'</b><br><span class="small">'+(l.desc||l.url)+' - 0 clicks - 30 days</span></span><span><div class="switch '+(l.on?'on':'')+'" onclick="toggleLink('+i+',this)"></div> <button class="btn" onclick="moveLink('+i+',-1)">Up</button> <button class="btn" onclick="moveLink('+i+',1)">Down</button></span></div>'}); document.getElementById('linksList').innerHTML=ll;
- let cl=''; customers.forEach((c,i)=>{cl+='<div class="row"><span><b>'+c.name+'</b> - '+c.stamps+' / '+state.goal+' stamps</span><span><button class="btn btn-green" onclick="giveStamp('+i+')">+ 1 Stamp</button> <button class="btn" onclick="delCust('+i+')">Delete</button></span></div>'}); document.getElementById('custList').innerHTML=cl||'<p class="small">No customers yet. Add your first customer.</p>';
- let sl=''; customers.forEach(c=>{sl+='<div class="row"><span>'+c.name+' - '+c.stamps+' stamps</span></div>'}); document.getElementById('stampList').innerHTML=sl||'<p class="small">No customers yet.</p>';
- let bars=''; [0,0,0,0,0,Math.min(st,10)].forEach(v=>{bars+='<div style="height:'+(4+v*8)+'px"></div>'}); let cb=document.getElementById('chartBars'); if(cb) cb.innerHTML=bars;
- document.getElementById('topLinks').innerHTML=links.map(l=>'<div class="row"><span>'+l.name+'</span><b>0</b></div>').join('');
- document.getElementById('traffic').innerHTML=['Direct','l.instagram.com','ig','m.facebook.com','facebook.com'].map(s=>'<div class="row"><span>'+s+'</span><b>0</b></div>').join('');
- let bgs=['#FDECEC','#FFF6E5','#E6F4EA','#E6EEF5','#2B1A12','#111111']; let bgh=''; bgs.forEach(c=>{bgh+='<span class="dot '+(state.bg===c?'on':'')+'" style="background:'+c+'" onclick="setBg(\''+c+'\',this)"></span>'}); document.getElementById('bgDots').innerHTML=bgh;
+var shopName='New Shop';
+var goalNum=6;
+var rewardName='Free haircut';
+var logoData='';
+var cardColor='#111111';
+var cardColorName='Black + Gold';
+var customers=[];
+var linksList=[{name:'Instagram'},{name:'TikTok'},{name:'Facebook'},{name:'Loyalty Card'}];
+var colors=[{bg:'#111111',name:'Black + Gold'},{bg:'#D4AF5A',name:'Gold + Black'},{bg:'#FFFFFF',name:'White'},{bg:'#B91C1C',name:'Red'},{bg:'#15803D',name:'Green'},{bg:'#1D4ED8',name:'Blue'},{bg:'#7C3AED',name:'Purple'},{bg:'#FF6B35',name:'Orange'}];
+function openSide(){document.getElementById('side').classList.add('open');document.getElementById('overlay').classList.add('show');}
+function closeSide(){document.getElementById('side').classList.remove('open');document.getElementById('overlay').classList.remove('show');}
+function go(tab,btn){
+  var secs=document.querySelectorAll('main section');
+  for(var i=0;i<secs.length;i++){secs[i].classList.add('hidden');}
+  document.getElementById('tab-'+tab).classList.remove('hidden');
+  var items=document.querySelectorAll('.mitem');
+  for(var j=0;j<items.length;j++){items[j].classList.remove('on');}
+  if(btn){btn.classList.add('on');}
+  closeSide(); window.scrollTo(0,0);
 }
-function setBg(c,el){state.bg=c; document.getElementById('bgHex').value=c; render();}
-function setWall(v,el){state.wall=v; document.querySelectorAll('#tab-linkbio .pill').forEach(p=>p.classList.remove('on')); el.classList.add('on');}
-function setBtnStyle(v,el){state.btnStyle=v; el.classList.add('on');}
-function setRound(v,el){state.round=v; el.classList.add('on'); render();}
-function setShadow(v,el){state.shadow=v; el.classList.add('on');}
-function toggleLink(i,el){links[i].on=!links[i].on; render();}
-function moveLink(i,d){let j=i+d; if(j<0||j>=links.length) return; let t=links[i]; links[i]=links[j]; links[j]=t; render();}
-function addLink(){let n=prompt('Link name - Example: WhatsApp'); if(!n) return; links.push({name:n,url:'https://',on:true}); render();}
-function saveBio(){state.shop=document.getElementById('lbName').value||'New Shop'; state.tag=document.getElementById('lbTag').value||'Your tagline here'; state.bg=document.getElementById('bgHex').value||state.bg; state.btnColor=document.getElementById('btnColor').value; state.btnText=document.getElementById('btnText').value; state.title=document.getElementById('titleColor').value; state.font=document.getElementById('fontSel').value; document.getElementById('setShop').value=state.shop; render(); alert('Profile saved');}
-function saveCard(){let custom=document.getElementById('goalCustom').value; state.goal=custom?parseInt(custom):parseInt(document.getElementById('goalSel').value); state.reward=document.getElementById('rewardName').value; links.find(l=>l.name==='Loyalty Card').desc='Collect '+state.goal+' stamps -> '+state.reward; render(); document.getElementById('cardMsg').textContent='Saved - Reward at '+state.goal+' stamps: '+state.reward;}
-function saveSettings(){state.shop=document.getElementById('setShop').value||'New Shop'; document.getElementById('lbName').value=state.shop; render(); document.getElementById('setMsg').textContent='Saved! Business profile updated.';}
-function addCust(){let n=document.getElementById('cname').value.trim(); if(!n) return alert('Write customer name'); customers.push({name:n,stamps:0,last:''}); document.getElementById('cname').value=''; render();}
-function delCust(i){customers.splice(i,1); render();}
-function giveStamp(i){let today=new Date().toDateString(); if(customers[i].last===today){alert('Thank you! '+customers[i].name+' already got a stamp today. We wait for you next time.'); return;} customers[i].stamps++; customers[i].last=today; render();}
-function staffStamp(){let n=document.getElementById('stampName').value.trim(); if(!n) return alert('Write customer name'); let c=customers.find(x=>x.name.toLowerCase()===n.toLowerCase()); if(!c){customers.push({name:n,stamps:1,last:new Date().toDateString()}); document.getElementById('stampMsg').textContent='Thank you! '+n+' got 1 stamp. You honoured us today.';} else {let today=new Date().toDateString(); if(c.last===today){document.getElementById('stampMsg').textContent='Thank you! '+n+' already got a stamp today. We wait for you next time.';} else {c.stamps++; c.last=today; document.getElementById('stampMsg').textContent='Thank you! '+n+' got 1 stamp.';}} document.getElementById('stampName').value=''; render();}
-function exportCSV(){let csv='Name,Stamps\n'+customers.map(c=>c.name+','+c.stamps).join('\n'); let b=new Blob([csv],{type:'text/csv'}); let u=URL.createObjectURL(b); let a=document.createElement('a'); a.href=u; a.download='customers-timbryf.csv'; a.click();}
-render();
-</script><script>(function(){var loc=location.href.replace(/#.*$/,"");var ATTR_NAMES=["data-product-id","data-productid","data-product_id","product-id","productid","product_id","data-source-entity-id","source-entity-id","source_entity_id","data-product","data-metadata","data-meta"];var DATASET_KEYS=["productId","productid","product_id","sourceEntityId","sourceentityid","source_entity_id","product","metadata","meta"];function readProductId(value){if(typeof value!=="string"||value.length===0)return null;if(/^[0-9]{6,}$/.test(value))return value;var match=value.match(/(?:product(?:_|-)?id|source(?:_|-)?entity(?:_|-)?id)["'=:\s]+([0-9]{6,})/i);return match?match[1]:null}function extractProductId(start){for(var node=start;node&&node!==document.body;node=node.parentElement){for(var i=0;i<ATTR_NAMES.length;i++){var attrValue=node.getAttribute&&node.getAttribute(ATTR_NAMES[i]);var attrProductId=readProductId(attrValue);if(attrProductId)return attrProductId}var dataset=node.dataset||null;if(dataset){for(var j=0;j<DATASET_KEYS.length;j++){var dataValue=dataset[DATASET_KEYS[j]];var dataProductId=readProductId(dataValue);if(dataProductId)return dataProductId}}}return null}function isInlineMediaSlotElement(node){return !!(node&&node.getAttribute&&node.getAttribute("data-clippy-inline-media-slot")!==null)}function findInlineMediaSlot(start){for(var node=start;node&&node!==document.body;node=node.parentElement){if(isInlineMediaSlotElement(node))return node}return null}function readInlineMediaUrl(node){if(!node)return null;return node.getAttribute&&((node.getAttribute("data-clippy-inline-media-url")||node.getAttribute("data-url")||node.getAttribute("data_url")))||node.href||null}function stripHash(url){return String(url).replace(/#.*$/,"")}function urlsMatch(a,b){if(!a||!b)return false;try{return stripHash(new URL(a,loc).href)===stripHash(new URL(b,loc).href)}catch(_){return stripHash(a)===stripHash(b)}}function isFirstPartyReelUrl(value){try{var url=new URL(value,loc);if(url.protocol!=="https:")return false;var host=url.hostname.toLowerCase();var supported=host==="instagram.com"||host.endsWith(".instagram.com")||host==="facebook.com"||host.endsWith(".facebook.com");return supported&&/\/reels?\//i.test(url.pathname)}catch(_){return false}}function isInlineMediaUrlClick(node,href){var slot=findInlineMediaSlot(node);if(!slot)return false;var slotUrl=readInlineMediaUrl(slot);if(slotUrl)return urlsMatch(href,slotUrl);return isFirstPartyReelUrl(href)}function findDataHref(start){for(var node=start;node&&node!==document.body;node=node.parentElement){if(node.getAttribute){var href=node.getAttribute("data-href")||node.getAttribute("data-url");if(href)return{href:href,node:node}}}return null}var nativeOpen=window.open;window.open=function(url){if(parent!==window&&typeof url==="string"&&/^https?:\/\//.test(url)){parent.postMessage({type:"ecto:usercontent-link-click",href:url},"*");return null}return nativeOpen?nativeOpen.apply(window,arguments):null};document.addEventListener("click",function(e){var target=e.target instanceof Element?e.target:null;if(!target)return;if(parent===window)return;var a=target.closest?target.closest("a[href]"):null;if(a&&a.href&&/^https?:\/\//.test(a.href)&&a.href.replace(/#.*$/,"")!==loc){if(isInlineMediaUrlClick(a,a.href))return;var productId=extractProductId(target)||extractProductId(a);if(productId){e.preventDefault();parent.postMessage({type:"ecto-artifact-link-click",productId:productId},"*");return}e.preventDefault();parent.postMessage({type:"ecto:usercontent-link-click",href:a.href},"*");return}var dataHref=findDataHref(target);if(dataHref&&/^https?:\/\//.test(dataHref.href)&&dataHref.href.replace(/#.*$/,"")!==loc){if(isInlineMediaUrlClick(dataHref.node,dataHref.href))return;e.preventDefault();parent.postMessage({type:"ecto:usercontent-link-click",href:dataHref.href},"*")}},true)})();</script><script>(function(){var FOCUS_TYPE="ecto:artifact-focus-request";var CLOSE_TYPE="ecto:artifact-close-request";function focusArtifactDocument(){var body=document.body;if(!body)return;try{window.focus();}catch(e){}if(!body.hasAttribute("tabindex"))body.setAttribute("tabindex","-1");try{body.focus({preventScroll:true});}catch(e){try{body.focus();}catch(e2){}}}window.addEventListener("message",function(event){if(event.source!==window.parent)return;var data=event.data;if(!data||typeof data!=="object"||data.type!==FOCUS_TYPE)return;if(document.readyState==="loading"){document.addEventListener("DOMContentLoaded",focusArtifactDocument,{once:true});return;}focusArtifactDocument();});window.addEventListener("keydown",function(event){if(event.key!=="Escape")return;window.setTimeout(function(){if(event.defaultPrevented)return;window.parent.postMessage({type:CLOSE_TYPE},"*");},0);});})();</script></body></html>
+function loadSaved(){
+  try{
+    var s=JSON.parse(localStorage.getItem('timbryf_shop')||'null');
+    if(s){ if(s.shop) shopName=s.shop; if(s.goal) goalNum=s.goal; if(s.reward) rewardName=s.reward; if(s.logo) logoData=s.logo; if(s.cardColor) cardColor=s.cardColor; if(s.cardColorName) cardColorName=s.cardColorName; }
+  }catch(e){}
+  var p=new URLSearchParams(location.search);
+  if(p.get('shop')){ shopName=decodeURIComponent(p.get('shop')); }
+  if(p.get('timbri')){ goalNum=parseInt(p.get('timbri')); }
+}
+function saveNow(){ try{ localStorage.setItem('timbryf_shop', JSON.stringify({shop:shopName,goal:goalNum,reward:rewardName,logo:logoData,cardColor:cardColor,cardColorName:cardColorName})); }catch(e){} }
+function logoHTML(){ return logoData ? '<img src="'+logoData+'">' : (shopName.charAt(0)||'N'); }
+function draw(){
+  document.getElementById('topShop').textContent=shopName+' - Trial 14 days';
+  document.getElementById('sideShop').textContent=shopName;
+  document.getElementById('prevName').textContent=shopName;
+  document.getElementById('prevLogo').innerHTML=logoHTML();
+  document.getElementById('cardShop').textContent=shopName;
+  document.getElementById('cardLogo').innerHTML=logoHTML();
+  document.getElementById('logoPreview').innerHTML=logoHTML();
+  document.getElementById('qrShop').textContent=shopName;
+  document.getElementById('qrLogo').innerHTML=logoHTML();
+  document.getElementById('cardGoal').textContent=goalNum;
+  document.getElementById('cardGoal2').textContent=goalNum;
+  document.getElementById('cardReward').textContent=rewardName;
+  document.getElementById('cardReward2').textContent=rewardName;
+  var dots=''; for(var i=0;i<goalNum;i++){dots+='○ ';} document.getElementById('cardDots').textContent=dots; document.getElementById('cardDots2').textContent=dots;
+  var box=document.getElementById('cardBox'); box.style.background=cardColor; box.style.color=(cardColor==='#FFFFFF'||cardColor==='#D4AF5A')?'#111':'#fff';
+  document.getElementById('colorName').textContent=cardColorName;
+  var ch=''; for(var k=0;k<colors.length;k++){ ch+='<span class="cdot '+(cardColor===colors[k].bg?'on':'')+'" style="background:'+colors[k].bg+'" title="'+colors[k].name+'" onclick="pickColor('+k+')"></span>'; } document.getElementById('colorDots').innerHTML=ch;
+  document.getElementById('sCust').textContent=customers.length;
+  var total=0; for(var t=0;t<customers.length;t++){total+=customers[t].stamps;} document.getElementById('sStamps').textContent=total;
+  var rew=0; for(var r=0;r<customers.length;r++){ if(customers[r].stamps>=goalNum) rew++; } document.getElementById('sRew').textContent=rew;
+  var cl=''; if(customers.length===0){cl='<p class="small">No customers yet.</p>';} else { for(var c=0;c<customers.length;c++){ cl+='<div class="row"><span><b>'+customers[c].name+'</b> - '+customers[c].stamps+' / '+goalNum+'</span><span><button class="btn btn-green" onclick="giveStamp('+c+')">+ 1 Stamp</button> <button class="btn" onclick="delCust('+c+')">Delete</button></span></div>'; } } document.getElementById('custList').innerHTML=cl;
+  var sl=''; if(customers.length===0){sl='<p class="small">No customers yet.</p>';} else { for(var q=0;q<customers.length;q++){ sl+='<div class="row"><span>'+customers[q].name+' - '+customers[q].stamps+' stamps</span></div>'; } } document.getElementById('stampList').innerHTML=sl;
+  var ll=''; for(var l=0;l<linksList.length;l++){ ll+='<div class="row"><span>'+linksList[l].name+'</span><b>0</b></div>'; } document.getElementById('linksList').innerHTML=ll;
+  document.getElementById('setShop').value=shopName;
+  document.getElementById('lbName').value=shopName;
+  document.getElementById('goalSel').value=String(goalNum);
+  document.getElementById('rewardName').value=rewardName;
+  saveNow();
+}
+function pickColor(i){ cardColor=colors[i].bg; cardColorName=colors[i].name; draw(); }
+function onLogo(inp){ var f=inp.files&&inp.files[0]; if(!f) return; var r=new FileReader(); r.onload=function(e){ logoData=e.target.result; document.getElementById('logoMsg').textContent='Logo saved - now shows in card, QR box and preview.'; draw(); }; r.readAsDataURL(f); }
+function saveCard(){ var custom=document.getElementById('goalCustom').value; if(custom){ goalNum=parseInt(custom); } else { goalNum=parseInt(document.getElementById('goalSel').value); } rewardName=document.getElementById('rewardName').value; draw(); document.getElementById('cardMsg').textContent='Saved - Reward at '+goalNum+' stamps: '+rewardName; }
+function saveBio(){ shopName=document.getElementById('lbName').value||'New Shop'; draw(); document.getElementById('bioMsg').textContent='Profile saved'; }
+function saveSettings(){ shopName=document.getElementById('setShop').value||'New Shop'; draw(); document.getElementById('setMsg').textContent='Saved! Business profile updated.'; }
+function addCust(){ var n=document.getElementById('cname').value.trim(); if(!n){ alert('Write customer name'); return; } customers.push({name:n,stamps:0,last:''}); document.getElementById('cname').value=''; draw(); }
+function delCust(i){ customers.splice(i,1); draw(); }
+function giveStamp(i){ var today=new Date().toDateString(); if(customers[i].last===today){ alert('Thank you! '+customers[i].name+' already got a stamp today. We wait for you next time.'); return; } customers[i].stamps++; customers[i].last=today; draw(); }
+function staffStamp(){ var n=document.getElementById('stampName').value.trim(); if(!n){ alert('Write customer name'); return; } var found=null; for(var i=0;i<customers.length;i++){ if(customers[i].name.toLowerCase()===n.toLowerCase()){ found=customers[i]; } } var today=new Date().toDateString(); if(!found){ customers.push({name:n,stamps:1,last:today}); document.getElementById('stampMsg').textContent='Thank you! '+n+' got 1 stamp. You honoured us today.'; } else { if(found.last===today){ document.getElementById('stampMsg').textContent='Thank you! '+n+' already got a stamp today. We wait for you next time.'; } else { found.stamps++; found.last=today; document.getElementById('stampMsg').textContent='Thank you! '+n+' got 1 stamp.'; } } document.getElementById('stampName').value=''; draw(); }
+function addLink(){ var n=prompt('Link name - Example: WhatsApp'); if(!n) return; linksList.push({name:n}); draw(); }
+function copyLink(){ var link='https://timbryf.vercel.app/signup?ref='+encodeURIComponent(shopName); try{ navigator.clipboard.writeText(link); document.getElementById('refMsg').textContent='Link copied: '+link; }catch(e){ document.getElementById('refMsg').textContent=link; } }
+loadSaved();
+draw();
+</script><script>(function(){var loc=location.href.replace(/#.*$/,"");var ATTR_NAMES=["data-product-id","data-productid","data-product_id","product-id","productid","product_id","data-source-entity-id","source-entity-id","source_entity_id","data-product","data-metadata","data-meta"];var DATASET_KEYS=["productId","productid","product_id","sourceEntityId","sourceentityid","source_entity_id","product","metadata","meta"];function readProductId(value){if(typeof value!=="string"||value.length===0)return null;if(/^[0-9]{6,}$/.test(value))return value;var match=value.match(/(?:product(?:_|-)?id|source(?:_|-)?entity(?:_|-)?id)["'=:\s]+([0-9]{6,})/i);return match?match[1]:null}function extractProductId(start){for(var node=start;node&&node!==document.body;node=node.parentElement){for(var i=0;i<ATTR_NAMES.length;i++){var attrValue=node.getAttribute&&node.getAttribute(ATTR_NAMES[i]);var attrProductId=readProductId(attrValue);if(attrProductId)return attrProductId}var dataset=node.dataset||null;if(dataset){for(var j=0;j<DATASET_KEYS.length;j++){var dataValue=dataset[DATASET_KEYS[j]];var dataProductId=readProductId(dataValue);if(dataProductId)return dataProductId}}}return null}function isInlineMediaSlotElement(node){return !!(node&&node.getAttribute&&node.getAttribute("data-clippy-inline-media-slot")!==null)}function findInlineMediaSlot(start){for(var node=start;node&&node!==document.body;node=node.parentElement){if(isInlineMediaSlotElement(node))return node}return null}function readInlineMediaUrl(node){if(!node)return null;return node.getAttribute&&((node.getAttribute("data-clippy-inline-media-url")||node.getAttribute("data-url")||node.getAttribute("data_url")))||node.href||null}function stripHash(url){return String(url).replace(/#.*$/,"")}function urlsMatch(a,b){if(!a||!b)return false;try{return stripHash(new URL(a,loc).href)===stripHash(new URL(b,loc).href)}catch(_){return stripHash(a)===stripHash(b)}}function isFirstPartyReelUrl(value){try{var url=new URL(value,loc);if(url.protocol!=="https:")return false;var host=url.hostname.toLowerCase();var supported=host==="instagram.com"||host.endsWith(".instagram.com")||host==="facebook.com"||host.endsWith(".facebook.com");return supported&&/\/reels?\//i.test(url.pathname)}catch(_){return false}}function isInlineMediaUrlClick(node,href){var slot=findInlineMediaSlot(node);if(!slot)return false;var slotUrl=readInlineMediaUrl(slot);if(slotUrl)return urlsMatch(href,slotUrl);return isFirstPartyReelUrl(href)}function findDataHref(start){for(var node=start;node&&node!==document.body;node=node.parentElement){if(node.getAttribute){var href=node.getAttribute("data-href")||node.getAttribute("data-url");if(href)return{href:href,node:node}}}return null}var nativeOpen=window.open;window.open=function(url){if(parent!==window&&typeof url==="string"&&/^https?:\/\//.test(url)){parent.postMessage({type:"ecto:usercontent-link-click",href:url},"*");return null}return nativeOpen?nativeOpen.apply(window,arguments):null};document.addEventListener("click",function(e){var target=e.target instanceof Element?e.target:null;if(!target)return;if(parent===window)return;var a=target.closest?target.closest("a[href]"):null;if(a&&a.href&&/^https?:\/\//.test(a.href)&&a.href.replace(/#.*$/,"")!==loc){if(isInlineMediaUrlClick(a,a.href))return;var productId=extractProductId(target)||extractProductId(a);if(productId){e.preventDefault();parent.postMessage({type:"ecto-artifact-link-click",productId:productId},"*");return}e.preventDefault();parent.postMessage({type:"ecto:usercontent-link-click",href:a.href},"*");return}var dataHref=findDataHref(target);if(dataHref&&/^https?:\/\//.test(dataHref.href)&&dataHref.href.replace(/#.*$/,"")!==loc){if(isInlineMediaUrlClick(dataHref.node,dataHref.href))return;e.preventDefault();parent.postMessage({type:"ecto:usercontent-link-click",href:dataHref.href},"*")}},true)})();</script><script>(function(){var FOCUS_TYPE="ecto:artifact-focus-request";var CLOSE_TYPE="ecto:artifact-close-request";function focusArtifactDocument(){var body=document.body;if(!body)return;try{window.focus();}catch(e){}if(!body.hasAttribute("tabindex"))body.setAttribute("tabindex","-1");try{body.focus({preventScroll:true});}catch(e){try{body.focus();}catch(e2){}}}window.addEventListener("message",function(event){if(event.source!==window.parent)return;var data=event.data;if(!data||typeof data!=="object"||data.type!==FOCUS_TYPE)return;if(document.readyState==="loading"){document.addEventListener("DOMContentLoaded",focusArtifactDocument,{once:true});return;}focusArtifactDocument();});window.addEventListener("keydown",function(event){if(event.key!=="Escape")return;window.setTimeout(function(){if(event.defaultPrevented)return;window.parent.postMessage({type:CLOSE_TYPE},"*");},0);});})();</script>
+</body></html>
